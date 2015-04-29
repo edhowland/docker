@@ -6,7 +6,7 @@ require '../container/container.rb'
 
 
 describe Container do
-  describe 'ctor w/o vols hash' do
+  describe 'ctor without vols hash' do
   before do
     @container=Container.new 'image', 'piper', 'cmd'
   end
@@ -16,10 +16,4 @@ it 'should return "create --name=piper, image, cmd"' do
   end
 end
 
-  describe 'cc' do
-    before do
-
-  end
-
-  end
 end
