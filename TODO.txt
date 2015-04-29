@@ -1,0 +1,4 @@
+# TODO.txt - things to do
+
+make lib/container/verb.rb - takes name, arg and optional array of Option flags
+ConstructContainer with 2  Verbs: create and start
