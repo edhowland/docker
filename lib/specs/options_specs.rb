@@ -8,8 +8,6 @@ require '../container/hash_option'
 describe Option do
   before do
     @option = Option.new
-  end
-
   it 'should be ok' do
       @option.to_s.must_equal ''end
 end
@@ -46,10 +44,13 @@ end
 
 
 describe HashOption do
-  before do
-    @option=HashOption.new 'v', '/d1/d2' => '/t1/t2'
+  describe 'one hash element' do
+    before do
+      @option=HashOption.new 'v', '/d1/d2' => '/t1/t2'
+    end
+   it 'should be -v /d1/d2:/t1/t2' do
+      @option.to_s.must_equal '-v /d1/d2:/t1/t2'
+    end
   end
- it 'should be -v /d1/d2:/t1/t2' do
-    @option.to_s.must_equal '-v /d1/d2:/t1/t2'
+    end
   end
-end
