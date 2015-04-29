@@ -6,11 +6,20 @@ require '../container/container.rb'
 
 
 describe Container do
+  describe 'ctor w/o vols hash' do
   before do
     @container=Container.new 'image', 'piper', 'cmd'
   end
 
 it 'should return "create --name=piper, image, cmd"' do
     @container.create.must_equal "create --name='piper' image cmd"
+  end
+end
+
+  describe 'cc' do
+    before do
+
+  end
+
   end
 end
