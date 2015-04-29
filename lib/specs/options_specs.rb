@@ -54,4 +54,15 @@ describe HashOption do
       @option.to_s.must_equal '-v /d1/d2:/t1/t2'
     end
   end
+
+
+  describe 'multiple hash elements' do
+    before do
+      @option=HashOption.new
+    end
+
+  it 'should be ----------' do
+      @option.to_s.must_equal ''
+  end
+  end
   end
