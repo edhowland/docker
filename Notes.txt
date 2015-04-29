@@ -29,3 +29,17 @@ edhowland - Pipeline Rakefile
 	Notes: This is jest the first attemp with hard coded paths and trivial executations.
 	Will now refactor to make it general
 
+edhowland - git with remote repos
+	Once you have a remote url setup : rwcitek-dev , you can pull with the following methods
+	git checkout rwcitek-dev
+	git pull  # fetches from remote/rwcitek/docker , then merges here
+	# now run test stuff
+	git checkout develop  # back to develop
+	git.flow.feature.start pull.from.rwcitek   # creates a feature branch to prepare merge
+	git diff rwcitek-dev 	# illuminates diffs between develop and rwcitek-dev
+	git merge rwcitek-dev  	# merges intor feature branch 
+	# now retest all
+	git.flow.feature.finish  	# merges into develop
+
+	Note: if you are on a feature branch when you do this, you will not have the changes from rwcitek. You will after you finish the feature or you can merge from develop.
+
