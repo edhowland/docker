@@ -58,11 +58,11 @@ describe HashOption do
 
   describe 'multiple hash elements' do
     before do
-      @option=HashOption.new
+      @option=HashOption.new 'v', '/d1/d2' => '/t1/t2'
     end
 
   it 'should be ----------' do
-      @option.to_s.must_equal ''
+      @option.to_s.must_equal '-v /d1/d2:/t1/t2'
   end
   end
   end
