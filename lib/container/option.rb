@@ -29,3 +29,14 @@ class LongOption < Option
     "--#{@name}='#{@value}'"
   end
 end
+
+class BinaryOption < Option
+  def initialize(name, value)
+  @name=name
+  @value=value
+  end
+
+  def to_s
+    "-#{@name} #{@value}"
+  end
+end
