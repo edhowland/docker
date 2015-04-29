@@ -8,8 +8,10 @@ require '../container/hash_option'
 describe Option do
   before do
     @option = Option.new
+  end
   it 'should be ok' do
-      @option.to_s.must_equal ''end
+      @option.to_s.must_equal ''
+end
 end
 
 describe UnaryOption do
@@ -52,5 +54,4 @@ describe HashOption do
       @option.to_s.must_equal '-v /d1/d2:/t1/t2'
     end
   end
-    end
   end
