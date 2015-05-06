@@ -1,4 +1,5 @@
 # Rakefile for pdftk and pdfocr docker images
+import '../lib/tasks/log.rake'
 
 task :default => [ './pdftk/.done', './pdfocr/.done' ]
 
@@ -14,7 +15,9 @@ file './pdfocr/.done' => './pdfocr/Dockerfile' do
   touch './pdfocr/.done'
 end
 
+desc 'cleans all tasks so they can be run anew'
 task :clean do
+  log 'Cleaning up semaphores : .done'
   rm_f './pdftk/.done'
   rm_f './pdfocr/.done'
 end

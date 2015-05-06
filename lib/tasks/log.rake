@@ -26,3 +26,7 @@ end
 
 
 log 'Logging started'
+at_exit do
+  log 'Logging finished'
+end
+
