@@ -26,3 +26,11 @@ end
 
 
 log 'Logging started'
+at_exit do
+  unless $!.nil?
+    log($!) 
+  log($@)
+  end
+  log 'Logging finished'
+end
+
