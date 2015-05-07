@@ -20,4 +20,5 @@ task :clean do
   log 'Cleaning up semaphores : .done'
   rm_f './pdftk/.done'
   rm_f './pdfocr/.done'
+  raise 'Bad juju'
 end
