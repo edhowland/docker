@@ -21,6 +21,7 @@ class Container
   end
 
   def start
-  ''
+  @tmp_str = "start #{@name}"
+  compose
   end
 end
