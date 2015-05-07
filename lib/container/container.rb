@@ -19,4 +19,8 @@ class Container
   def create
   "create --name='#{@name}' #{@image} #{@cmd}"
   end
+
+  def start
+  ''
+  end
 end
