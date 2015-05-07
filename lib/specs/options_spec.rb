@@ -1,8 +1,7 @@
 # options_specs.rb - test Options
 
 require 'minitest/autorun'
-require '../container/option'
-require '../container/hash_option'
+require '../container'
 
 
 describe Option do

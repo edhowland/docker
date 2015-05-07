@@ -2,8 +2,7 @@
 # composable_spec.rb - mini spec to test module Composable
 
 require 'minitest/autorun'
-require '../container/sudo'
-require '../container/docker'
+require '../container'
 
 
 describe Composable do
