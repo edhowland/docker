@@ -1,6 +1,7 @@
 #  container.rb - class Container
 
 require "#{File.dirname(__FILE__)}/composable"
+require "#{File.dirname(__FILE__)}/verb"
 
 class Container
   include Composable
@@ -10,6 +11,9 @@ class Container
   @image=image
     @name=name
     @cmd=command
+
+  @verbs = {}
+  @verbs[:start] = Verb.new('start', @name)
   end
 
   def to_s
@@ -21,7 +25,7 @@ class Container
   end
 
   def start
-  @tmp_str = "start #{@name}"
+  @tmp_str = @verbs[:start].to_s
   compose
   end
 end

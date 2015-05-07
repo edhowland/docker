@@ -9,16 +9,19 @@ describe Container do
     before do
   @c = Container.new 'image', 'name', 'command' 
     end
+    it 'should have a create method' do
+      @c.must_respond_to :create
+    end
     it 'should have a start method' do
       @c.must_respond_to :start
     end
 
-    it 'should work with compose' do
-      @c.start
-  @c.to_s.wont_be_empty
-    end
     it 'should not be empty' do
       @c.start.wont_be_empty
+    end
+
+    it 'should be "start name"' do
+      @c.start.must_equal 'start name'
     end
   end 
 end
