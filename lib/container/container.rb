@@ -13,10 +13,19 @@ class Container
   @image=image
     @name=name
     @command=command
-
+  @vols_hash = vols_hash
+    @vols_options = HashOption.new('v', @vols_hash)
   @verbs = {}
-      @verbs[:create] = MultiArgVerb.new('create', @image, @command, LongOption.new('name', @name))
+    if (@vols_hash.empty?)
+        @verbs[:create] = MultiArgVerb.new('create', @image, @command, LongOption.new('name', @name))
+    else
+        @verbs[:create] = MultiArgVerb.new('create', @image, @command, LongOption.new('name', @name), @vols_options)
+
+    end
   @verbs[:start] = Verb.new('start', @name)
+  end
+  def vols_hash
+    @vols_hash
   end
 
   def to_s

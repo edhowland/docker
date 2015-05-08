@@ -58,4 +58,13 @@ describe MultiArgVerb do
     @v.to_s.must_equal 'create --name=\'pdftk\' image command'
   end
 
+  describe 'with flags incl: volume hash' do
+    before do
+      @v = MultiArgVerb.new('create', 'image', 'command', LongOption.new('name', 'name'), HashOption.new('v', '/d1/d2' => '/v1/v2'))
+  end
+
+  it 'shouldbe : create --name=\'name\' -v /d1/d2:/v1/v2 image command' do
+      @v.to_s.must_equal "create --name='name' -v /d1/d2:/v1/v2 image command"
+  end
+  end
 end
