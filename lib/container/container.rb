@@ -1,6 +1,9 @@
 #  container.rb - class Container
 
 require "#{File.dirname(__FILE__)}/composable"
+require "#{File.dirname(__FILE__)}/verb"
+require "#{File.dirname(__FILE__)}/option"
+require "#{File.dirname(__FILE__)}/hash_option"
 
 class Container
   include Composable
@@ -9,7 +12,20 @@ class Container
   @tmp_str = ''  
   @image=image
     @name=name
-    @cmd=command
+    @command=command
+  @vols_hash = vols_hash
+    @vols_options = HashOption.new('v', @vols_hash)
+  @verbs = {}
+    if (@vols_hash.empty?)
+        @verbs[:create] = MultiArgVerb.new('create', @image, @command, LongOption.new('name', @name))
+    else
+        @verbs[:create] = MultiArgVerb.new('create', @image, @command, LongOption.new('name', @name), @vols_options)
+
+    end
+  @verbs[:start] = Verb.new('start', @name)
+  end
+  def vols_hash
+    @vols_hash
   end
 
   def to_s
@@ -17,6 +33,12 @@ class Container
   end
 
   def create
-  "create --name='#{@name}' #{@image} #{@cmd}"
+    @tmp_str = @verbs[:create].to_s
+   compose
+  end
+
+  def start
+  @tmp_str = @verbs[:start].to_s
+  compose
   end
 end
