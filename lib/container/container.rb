@@ -2,6 +2,8 @@
 
 require "#{File.dirname(__FILE__)}/composable"
 require "#{File.dirname(__FILE__)}/verb"
+require "#{File.dirname(__FILE__)}/option"
+require "#{File.dirname(__FILE__)}/hash_option"
 
 class Container
   include Composable
@@ -10,9 +12,10 @@ class Container
   @tmp_str = ''  
   @image=image
     @name=name
-    @cmd=command
+    @command=command
 
   @verbs = {}
+      @verbs[:create] = MultiArgVerb.new('create', @image, @command, LongOption.new('name', @name))
   @verbs[:start] = Verb.new('start', @name)
   end
 
@@ -21,7 +24,8 @@ class Container
   end
 
   def create
-  "create --name='#{@name}' #{@image} #{@cmd}"
+    @tmp_str = @verbs[:create].to_s
+   compose
   end
 
   def start

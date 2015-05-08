@@ -17,6 +17,11 @@ describe Container do
       @c.create.wont_be_empty
     end
 
+
+    it 'should be : create --name=\'name\' image command' do
+      @c.create.must_equal "create --name='name' image command"
+    end
+
     it 'should have a start method' do
       @c.must_respond_to :start
     end
