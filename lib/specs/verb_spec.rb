@@ -48,3 +48,14 @@ end
 
 
 end
+
+describe MultiArgVerb do
+  before do
+    @v=MultiArgVerb.new('create', 'image', 'command', LongOption.new('name', 'pdftk'))
+  end
+
+  it 'should be : create --name=\'pdftk\' image command' do
+    @v.to_s.must_equal 'create --name=\'pdftk\' image command'
+  end
+
+end

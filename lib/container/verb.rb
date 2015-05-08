@@ -16,3 +16,16 @@ class Verb
   end
 end
 
+
+class MultiArgVerb < Verb
+  def initialize name, arg1, arg2, *flags
+    @name=name
+  @arg1=arg1
+  @arg2=arg2
+  @flags=flags
+  @value = [@name]
+  @value << @flags.join(' ') unless @flags.empty?
+    @value << @arg1
+  @value << @arg2
+  end
+end
