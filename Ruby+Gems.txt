@@ -14,6 +14,19 @@ This toy Docker example can be run with any version of Ruby from 1.9+ Currently,
 On Digital Ocean and Vagrant VMs, I am using 'install-ruby --system ruby 2.2.2' which installs ruby in /opt/rubies
 To get to run for you: run 'chruby 2.2.2' or put that in ~/.bashrc
 
+
+## Running Specs
+The lib/specs dir contains all the minitest specs so far. To run all
+of them do:
+```
+    cd ./lib/specs
+    rake test
+````
+
+The Rakefile there contains a special TestTask labeled :test which compiles all the
+specs matching the pattern *_spec.rb into a unigied test run and report.
+The files it currently tests are in ./lib/container.
+
 Here are the Github references:
 https://github.com/postmodern/chruby
 https://github.com/postmodern/ruby-install
