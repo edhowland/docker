@@ -23,4 +23,16 @@ describe Verb do
         @verb.to_s.must_equal 'start name'
       end
   end
+
+  describe 'with one or more options' do
+    before do
+      @v=Verb.new('create', 'image', LongOption.new('name', 'pdftk'))
+  end
+
+    it 'should be : create --name=pdftk image' do
+ #     @v.to_s.must_equal 'create --name=pdftk image'
+    end
 end
+end
+
+
