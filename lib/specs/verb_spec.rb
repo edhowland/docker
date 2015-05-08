@@ -33,6 +33,18 @@ describe Verb do
  #     @v.to_s.must_equal 'create --name=pdftk image'
     end
 end
+
+
+  describe 'with a LongOption and UnaryOption' do
+    before do
+      @v=Verb.new('create', 'image', LongOption.new('name', 'pdftk'), UnaryOption.new('t'))
+    end
+
+    it 'should be : create --name="pdftk" -t image' do
+      @v.to_s.must_equal 'create --name=\'pdftk\' -t image'
+    end
+  end
+
+
+
 end
-
-

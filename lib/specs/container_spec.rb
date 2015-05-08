@@ -12,6 +12,11 @@ describe Container do
     it 'should have a create method' do
       @c.must_respond_to :create
     end
+
+    it 'should not be empty' do
+      @c.create.wont_be_empty
+    end
+
     it 'should have a start method' do
       @c.must_respond_to :start
     end
