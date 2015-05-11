@@ -1,9 +1,6 @@
 #  container.rb - class Container
 
-require "#{File.dirname(__FILE__)}/composable"
-require "#{File.dirname(__FILE__)}/verb"
-require "#{File.dirname(__FILE__)}/option"
-require "#{File.dirname(__FILE__)}/hash_option"
+require "#{File.dirname(__FILE__)}/../command"
 
 class Container
   include Composable
