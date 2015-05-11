@@ -1,11 +1,16 @@
 # Rakefile for pdftk and pdfocr docker images
+DOCKER_ROOT="#{File.dirname(__FILE__)}/.."
+CONFIG_ROOT="#{DOCKER_ROOT}/config"
+
 import '../lib/tasks/log.rake'
+require DOCKER_ROOT + '/lib/image'
 
 task :default => [ './pdftk/.done', './pdfocr/.done' ]
 
 desc 'Build pdftk'
 file './pdftk/.done' => './pdftk/Dockerfile' do
   log 'Building pdftk'
+  pdftk_image = ImageFactory.load(CONFIG_ROOT, 'pdftk')
   sh 'cd ./pdftk; sudo docker build -t "edhowland/pdftk:v0.1" .'
   touch './pdftk/.done'
 end
