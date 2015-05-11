@@ -6,11 +6,11 @@ require '../container'
 
 describe 'Integrating Image full command line' do
   before do
-
+    @i = Sudo.new + Docker.new + Image.new('swinehart/pdftk:v0.1')
   end
 
-  it 'should be ' do
-
+  it 'should build be sudo docker build swinehart/pdftk:v0.1' do
+    @i.build.must_equal 'sudo docker build swinehart/pdftk:v0.1'
   end
 end
 
