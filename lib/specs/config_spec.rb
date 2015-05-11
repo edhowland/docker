@@ -10,10 +10,10 @@ describe Config do
     @c.container_name = 'piper.pdftk'
   @c.registry = 'swinehart'
   @c.tag = 'v0.1'
+    @c.save('spec.yml')
   end
 describe 'saving Config object' do
   it 'should write out config' do
-    @c.save('spec.yml')
   end
 end
 
