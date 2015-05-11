@@ -1,10 +1,21 @@
 #integration_spc.rb - tests full composable container verbs
 
 require 'minitest/autorun'
+require '../image'
 require '../container'
 
+describe 'Integrating Image full command line' do
+  before do
 
-describe 'Integrating full command line' do
+  end
+
+  it 'should be ' do
+
+  end
+end
+
+
+describe 'Integrating Container full command line' do
   before do
     @c = Sudo.new + Docker.new + Container.new('image', 'name', 'command', '/d1' => '/v1')
   end
