@@ -1,7 +1,7 @@
 # options_specs.rb - test Options
 
 require 'minitest/autorun'
-require '../container'
+require '../command'
 
 
 describe Option do

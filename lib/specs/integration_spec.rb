@@ -1,10 +1,21 @@
 #integration_spc.rb - tests full composable container verbs
 
 require 'minitest/autorun'
+require '../image'
 require '../container'
 
+describe 'Integrating Image full command line' do
+  before do
+    @i = Sudo.new + Docker.new + Image.new('swinehart/pdftk:v0.1')
+  end
 
-describe 'Integrating full command line' do
+  it 'should build be sudo docker build swinehart/pdftk:v0.1' do
+    @i.build.must_equal 'sudo docker build swinehart/pdftk:v0.1'
+  end
+end
+
+
+describe 'Integrating Container full command line' do
   before do
     @c = Sudo.new + Docker.new + Container.new('image', 'name', 'command', '/d1' => '/v1')
   end

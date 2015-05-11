@@ -2,7 +2,7 @@
 # composable_spec.rb - mini spec to test module Composable
 
 require 'minitest/autorun'
-require '../container'
+require '../command'
 
 
 describe Composable do

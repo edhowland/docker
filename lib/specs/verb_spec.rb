@@ -1,7 +1,7 @@
 # verb_spec.rb - specs to test Berb
 
 require 'minitest/autorun'
-require '../container'
+require '../command'
 
 describe Verb do
   describe 'with name, flags and arg' do
