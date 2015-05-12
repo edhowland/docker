@@ -1,7 +1,7 @@
 # image.rb - class Image to handle docker images
 # These are typically found in build/Rakefile
 
-require '../command'
+require "#{File.dirname(__FILE__)}/../command" 
 
 class Image
   include Composable
