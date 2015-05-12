@@ -1,8 +1,8 @@
 # image_factory.rb - ImageFactory
 
-require '../command'
+require "#{File.dirname(__FILE__)}/../command"
 require "#{File.dirname(__FILE__)}/image"
-require '../tasks/config'
+require"#{File.dirname(__FILE__)}/../tasks/config" 
 
 class ImageFactory
   def self.load(root, name)
