@@ -11,15 +11,22 @@ desc 'Build pdftk'
 file './pdftk/.done' => './pdftk/Dockerfile' do
   log 'Building pdftk'
   pdftk_image = ImageFactory.load(CONFIG_ROOT, 'pdftk')
-  sh 'cd ./pdftk; sudo docker build -t "edhowland/pdftk:v0.1" .'
-  touch './pdftk/.done'
+  cd 'pdftk' do
+      sh pdftk_image.build 
+    touch '.done'
+  end
+  log 'Built: ' + pdftk_image.name
 end
 
 desc 'Build pdfocr'
 file './pdfocr/.done' => './pdfocr/Dockerfile' do
-  log 'Building pdfocr'
-  sh 'cd pdfocr; sudo docker build -t "edhowland/pdfocr:v0.1" .'
-  touch './pdfocr/.done'
+ lopg 'Building pdfocr'
+  pdfocr_image = ImageFactory..load(CONFIG_ROOT, 'pdfocr')
+  cd 'pdfocr' do
+    sh pdfocr_image.build
+    touch '.done'
+  end
+  log 'Built : ' + pdfocr_image.name
 end
 
 desc 'cleans all tasks so they can be run anew'
