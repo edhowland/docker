@@ -12,7 +12,9 @@ end
 # get a string value from the user with the name and default
 def get_value(name, default)
   print ".#{name} (#{default}) : "
-  gets
+  tmp = gets
+  tmp = tmp.chomp
+  (tmp.empty? ? default : tmp)
 end
 
 # given a Config object, ask user for attributes and return new object
@@ -24,6 +26,8 @@ def edit_config config
   config
 end
 
+# loads the existing path into Config
+# edits it and saves back to path
 pdftk = Config.load(config_path('pdftk'))
 new_pdftk = edit_config(pdftk)
 new_pdftk.save(config_path('pdftk'))
