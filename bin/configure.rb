@@ -4,11 +4,8 @@ DOCKER_ROOT="#{File.dirname(__FILE__)}/.."
 CONFIG_ROOT=DOCKER_ROOT+'/config'
 
 require DOCKER_ROOT+'/lib/tasks/config'
+require "#{File.dirname(__FILE__)}/config_path"
 
-# REMOVE this
-def config_path name
-  "#{CONFIG_ROOT}/#{name}.yml"
-end
 # get a string value from the user with the name and default
 def get_value(name, default)
   print ".#{name} (#{default}) : "
@@ -28,6 +25,15 @@ end
 
 # loads the existing path into Config
 # edits it and saves back to path
-pdftk = Config.load(config_path('pdftk'))
-new_pdftk = edit_config(pdftk)
-new_pdftk.save(config_path('pdftk'))
+def load_edit_save name
+  config = Config.load(config_path(name))
+  config  = edit_config(config)
+  config.save(config_path(name))
+end
+
+puts 'Edit config values for : pdftk'
+load_edit_save 'pdftk'
+
+puts ''
+puts 'Edit values for : pdfocr'
+load_edit_save 'pdfocr'
