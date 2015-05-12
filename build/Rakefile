@@ -12,7 +12,7 @@ file './pdftk/.done' => './pdftk/Dockerfile' do
   log 'Building pdftk'
   pdftk_image = ImageFactory.load(CONFIG_ROOT, 'pdftk')
   cd 'pdftk' do
-      sh pdftk_image.build 
+     sh pdftk_image.build
     touch '.done'
   end
   log 'Built: ' + pdftk_image.name
@@ -20,8 +20,8 @@ end
 
 desc 'Build pdfocr'
 file './pdfocr/.done' => './pdfocr/Dockerfile' do
- lopg 'Building pdfocr'
-  pdfocr_image = ImageFactory..load(CONFIG_ROOT, 'pdfocr')
+ log 'Building pdfocr'
+  pdfocr_image = ImageFactory.load(CONFIG_ROOT, 'pdfocr')
   cd 'pdfocr' do
     sh pdfocr_image.build
     touch '.done'
