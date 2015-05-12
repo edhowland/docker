@@ -26,4 +26,4 @@ end
 
 pdftk = Config.load(config_path('pdftk'))
 new_pdftk = edit_config(pdftk)
-new_pdftk.save(configpath('pdftk'))
+new_pdftk.save(config_path('pdftk'))
