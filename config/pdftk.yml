@@ -1,0 +1,6 @@
+--- !ruby/object:Config
+image_name: ''
+container_name: ''
+registry: ''
+tag: ''
+vols_hash: {}
