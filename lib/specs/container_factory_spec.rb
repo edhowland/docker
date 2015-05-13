@@ -7,6 +7,8 @@ describe ContainerFactory do
   before do
     config = Config.new
   config.container_name = 'piper.pdftk'
+    config.image_name = 'pdftk'
+    config.arg = 'run.sh'
 config.save  CONFIG_ROOT + '/pdftk.yml'
     @c = ContainerFactory.load CONFIG_ROOT, 'pdftk'
   end

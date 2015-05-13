@@ -6,6 +6,7 @@ class Config
   @container_name
   @registry
   @tag
+@arg
   @vols_hash={}
 
   def initialize
@@ -13,6 +14,7 @@ class Config
     @container_name = ''
    @registry = ''
     @tag = ''
+    @arg = ''
     @vols_hash = {}
   end
 
@@ -54,6 +56,14 @@ end
 
   def tag=(name)
     @tag= name
+  end
+
+def arg
+    @arg
+  end
+
+  def arg= name
+    @arg = name
   end
 
   def vols_hash
