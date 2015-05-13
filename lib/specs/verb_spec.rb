@@ -49,6 +49,17 @@ end
 
 end
 
+describe NoArgVerb do
+  before do
+    @v = NoArgVerb.new('verb')
+  end
+
+  it 'should vbe : verb' do
+    @v.to_s.must_equal 'verb'
+  end
+end
+
+
 describe MultiArgVerb do
   before do
     @v=MultiArgVerb.new('create', 'image', 'command', LongOption.new('name', 'pdftk'))

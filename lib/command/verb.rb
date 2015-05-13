@@ -17,6 +17,15 @@ class Verb
 end
 
 
+class NoArgVerb < Verb
+  def initialize name, *flags
+  @name = name
+  @value = [@name]
+
+  end
+end
+
+
 class MultiArgVerb < Verb
   def initialize name, arg1, arg2, *flags
     @name=name

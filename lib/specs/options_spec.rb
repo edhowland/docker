@@ -38,8 +38,8 @@ describe BinaryOption do
     @option=BinaryOption.new 'v', 'value'
   end
 
-  it 'should be -v value' do
-    @option.to_s.must_equal '-v value'
+  it 'should be -v "value"' do
+    @option.to_s.must_equal '-v "value"'
   end
 end
 
