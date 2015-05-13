@@ -5,10 +5,13 @@ require '../container'
 CONFIG_ROOT='.'
 describe ContainerFactory do
   before do
+    config = Config.new
+  config.container_name = 'piper.pdftk'
+config.save  CONFIG_ROOT + '/pdftk.yml'
     @c = ContainerFactory.load CONFIG_ROOT, 'pdftk'
   end
 
-  it 'should be :' do
-  @c.start.must_equal ''
+  it 'should be : sudo docker start piper.pdftk' do
+  @c.start.must_equal 'sudo docker start piper.pdftk'
   end
 end
