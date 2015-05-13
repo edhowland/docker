@@ -50,12 +50,25 @@ end
 end
 
 describe NoArgVerb do
+  describe 'with no flags' do
   before do
     @v = NoArgVerb.new('verb')
   end
 
   it 'should vbe : verb' do
     @v.to_s.must_equal 'verb'
+  end
+  end
+
+  describe 'with one flag: binary' do
+    before do
+      @v = NoArgVerb.new('verb', BinaryOption.new('c', 'command'))
+  end
+
+    it 'should be : verb -c "command"' do
+      @v.to_s.must_equal 'verb -c "command"'
+  end
+
   end
 end
 

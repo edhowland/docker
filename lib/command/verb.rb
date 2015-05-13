@@ -20,7 +20,10 @@ end
 class NoArgVerb < Verb
   def initialize name, *flags
   @name = name
+  @flags = flags
   @value = [@name]
+  @value << @flags.join(' ') if !@flags.empty?
+
 
   end
 end
