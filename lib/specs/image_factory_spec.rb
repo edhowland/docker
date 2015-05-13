@@ -13,7 +13,7 @@ describe ImageFactory do
     @c.save('pdftk.yml')
     @i = ImageFactory.load(File.dirname(__FILE__), 'pdftk')
   end
-  it 'should build be : sudo docker build swinehart/pdftk:v0.1' do
-    @i.build.must_equal 'sudo docker build -t "swinehart/pdftk:v0.1"'
+  it 'should build be : sudo docker build -t "swinehart/pdftk:v0.1" .' do
+    @i.build.must_equal 'sudo docker build -t "swinehart/pdftk:v0.1" .'
   end
 end

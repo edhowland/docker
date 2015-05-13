@@ -11,7 +11,7 @@ class Image
 
     @tmp_str = ''
     @verbs = {}
-  @verbs[:build] = NoArgVerb.new('build', BinaryOption.new('t',  @name))
+  @verbs[:build] = Verb.new('build', '.', BinaryOption.new('t',  @name))
   end
 
   def name
