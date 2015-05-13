@@ -12,6 +12,30 @@ describe Config do
   @c.tag = 'v0.1'
     @c.save('spec.yml')
   end
+  describe 'empty config object' do
+    before do
+    @empty = Config.new
+    end
+
+    it 'should image_name be : ""' do
+      @empty.image_name.must_equal ''
+    end
+    it 'should container_name be : ""' do
+      @empty.container_name.must_equal ''
+    end
+
+    it 'should registry be : ""' do
+      @empty.registry.must_equal ''
+    end
+
+    it 'should tag be : ""' do
+      @empty.tag.must_equal ''
+    end
+
+    it 'should vols_hash be empty' do
+      @empty.vols_hash.must_be_empty
+    end
+  end
 describe 'saving Config object' do
   it 'should write out config' do
   end

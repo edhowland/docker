@@ -8,6 +8,14 @@ class Config
   @tag
   @vols_hash={}
 
+  def initialize
+    @image_name = ''
+    @container_name = ''
+   @registry = ''
+    @tag = ''
+    @vols_hash = {}
+  end
+
    def self.load(filename)
     File.open(filename, 'r') do |f|
       str = f.read

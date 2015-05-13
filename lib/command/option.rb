@@ -37,6 +37,6 @@ class BinaryOption < Option
   end
 
   def to_s
-    "-#{@name} #{@value}"
+    "-#{@name} \"#{@value}\""
   end
 end

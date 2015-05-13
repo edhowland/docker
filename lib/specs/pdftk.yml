@@ -1,0 +1,6 @@
+--- !ruby/object:Config
+image_name: pdftk
+container_name: piper.pdftk
+registry: swinehart
+tag: v0.1
+vols_hash: {}
