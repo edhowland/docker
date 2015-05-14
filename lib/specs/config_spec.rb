@@ -10,6 +10,7 @@ describe Config do
     @c.container_name = 'piper.pdftk'
   @c.registry = 'swinehart'
   @c.tag = 'v0.1'
+    @c.arg = 'run.sh'
     @c.save('spec.yml')
   end
   describe 'empty config object' do
@@ -31,6 +32,11 @@ describe Config do
     it 'should tag be : ""' do
       @empty.tag.must_equal ''
     end
+
+
+  it 'should arg be empty' do
+      @empty.arg.must_be_empty
+  end
 
     it 'should vols_hash be empty' do
       @empty.vols_hash.must_be_empty
@@ -64,6 +70,10 @@ describe 'loading YAML file' do
 
   it 'should tagg be : v0.1' do
     @c.tag.must_equal 'v0.1'
+  end
+
+  it 'should arg be : run.sh' do
+      @c.arg.must_equal 'run.sh'
   end
 end
 end

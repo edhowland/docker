@@ -20,6 +20,7 @@ def edit_config config
   config.image_name = get_value('image name', config.image_name)
   config.tag = get_value('tag', config.tag)
   config.container_name = get_value('container_name', config.container_name)
+  config.arg = get_value('Command to be run', config.arg)
   config
 end
 

@@ -3,4 +3,5 @@ image_name: ''
 container_name: ''
 registry: ''
 tag: ''
+arg: ''
 vols_hash: {}
