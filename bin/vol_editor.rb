@@ -9,5 +9,6 @@ class VolEditorWorker
 
   # Read, Eval, Print Loop
   def repl
+  command = @in.gets
   end
 end
