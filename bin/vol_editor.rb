@@ -1,9 +1,7 @@
 # vol_editor.rb - VolEditor
 
 class VolEditorWorker
-  alias_method :a, :add
-  alias_method :d, :delete
-
+  
   def initialize stdin, stdout, hash
     @in = stdin
     @out = stdout
@@ -12,25 +10,45 @@ class VolEditorWorker
 
 
 def add
+  @out.puts 'In Add'
   end
 
   def delete
-  end
-  def request char
-  end
-def response
-  ''
+  @out.puts 'In delete'
   end 
+
+  def quit
+    @out.puts 'Quitting.'
+  end
+    alias_method :a, :add
+    alias_method :d, :delete
+  alias_method :q, :quit
+    
+# syntax check inpu
+  def syntax_ok?
+    @command =~ /[aAdDqQ]/
+  end
+
+
+  # process command
+  def process
+  c = @command.chomp
+    c = c[0].downcase
+  c = c.to_sym
+  self.send c
+  end
   # Read, Eval, Print Loop
   def repl
-  @out.puts '(a)dd, (d)elete or (q)uit : '
-  command = @in.gets
+  @out.print '(a)dd, (d)elete or (q)uit : '
+  @command = @in.gets
+@out.puts 'I do not understand that' unless syntax_ok?
+  process if syntax_ok?
   end
 end
 
-class VolEditor
+class VolEditor < VolEditorWorker
   def initialize hash={}
-    VolEditorWorker.new STDIN, STDOUT, hash
+     super(STDIN, STDOUT, hash)
   end
 end
 
