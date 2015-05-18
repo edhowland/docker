@@ -1,4 +1,5 @@
 # vol_editor.rb - VolEditor
+@finish = false
 
 class VolEditorWorker
   
@@ -19,6 +20,7 @@ def add
 
   def quit
     @out.puts 'Quitting.'
+@finish = true
   end
     alias_method :a, :add
     alias_method :d, :delete
@@ -39,10 +41,12 @@ def add
   end
   # Read, Eval, Print Loop
   def repl
-  @out.print '(a)dd, (d)elete or (q)uit : '
-  @command = @in.gets
-@out.puts 'I do not understand that' unless syntax_ok?
-  process if syntax_ok?
+    until @finish do
+    @out.print '(a)dd, (d)elete or (q)uit : '
+    @command = @in.gets
+  @out.puts 'I do not understand that' unless syntax_ok?
+    process if syntax_ok?
+    end
   end
 end
 
