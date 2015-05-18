@@ -7,8 +7,16 @@ class VolEditorWorker
     @in = stdin
     @out = stdout
     @hash = hash
+    @arr = @hash.to_a
   end
 
+  def display
+    @out.puts "Host Dir\tmaps to\tContainer Dir"
+    @arr.inject(1) do |i, j|
+      @out.puts "#{i}: #{j[0]}\t->\t#{j[1]}"
+    i + 1
+    end
+  end
 
 def add
   @out.puts 'In Add'
@@ -21,6 +29,7 @@ def add
   def quit
     @out.puts 'Quitting.'
 @finish = true
+    @hash = @arr.to_h
   end
     alias_method :a, :add
     alias_method :d, :delete
@@ -42,11 +51,13 @@ def add
   # Read, Eval, Print Loop
   def repl
     until @finish do
+      display
     @out.print '(a)dd, (d)elete or (q)uit : '
     @command = @in.gets
   @out.puts 'I do not understand that' unless syntax_ok?
     process if syntax_ok?
     end
+    @hash
   end
 end
 
