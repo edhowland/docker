@@ -45,9 +45,14 @@ def add
     alias_method :d, :delete
   alias_method :q, :quit
     
+def prompt
+    "(a)dd#{@arr.length > 0 ? '(d)elete, ' : ''} or (q)uit : "
+  end
+
 # syntax check inpu
   def syntax_ok?
-    @command =~ /[aAdDqQ]/
+    regex = (@arr.length > 0 ? /^[aAdDqQ]/ : /^[aAqQ]/)
+    @command =~ regex
   end
 
 
@@ -62,7 +67,7 @@ def add
   def repl
     until @finish do
       display
-    @out.print '(a)dd, (d)elete or (q)uit : '
+    @out.print prompt
     @command = @in.gets
   @out.puts 'I do not understand that' unless syntax_ok?
     process if syntax_ok?
