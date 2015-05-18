@@ -5,6 +5,7 @@ CONFIG_ROOT=DOCKER_ROOT+'/config'
 
 require DOCKER_ROOT+'/lib/tasks/config'
 require "#{File.dirname(__FILE__)}/config_path"
+require "#{File.dirname(__FILE__)}/vol_editor"
 
 # get a string value from the user with the name and default
 def get_value(name, default)
@@ -21,6 +22,8 @@ def edit_config config
   config.tag = get_value('tag', config.tag)
   config.container_name = get_value('container_name', config.container_name)
   config.arg = get_value('Command to be run', config.arg)
+  editor = VolEditor.new(config.vols_hash)
+  config.vols_hash = editor.repl
   config
 end
 
