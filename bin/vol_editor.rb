@@ -19,7 +19,11 @@ class VolEditorWorker
   end
 
 def add
-  @out.puts 'In Add'
+  @out.print 'Host dir : '
+    host = @in.gets.chomp
+    @out.print 'Container dir : '
+    container = @in.gets.chomp
+    @arr << [host, container]
   end
 
   def delete
