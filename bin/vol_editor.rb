@@ -27,7 +27,13 @@ def add
   end
 
   def delete
-  @out.puts 'In delete'
+  @out.print '# to delete? : '
+  check = 1..@arr.length
+    val = @in.gets.chomp
+    val = val.to_i
+@out.puts 'Illegal number' unless check.member? val
+    @arr.delete_at (val - 1) if check.member? val
+  
   end 
 
   def quit
