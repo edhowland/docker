@@ -3,5 +3,5 @@ image_name: pdftk
 container_name: piper.pdftk
 registry: swinehart
 tag: v0.1
-arg: run.sh
+arg: ''
 vols_hash: {}
