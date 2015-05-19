@@ -6,10 +6,12 @@ require "../lib/container"
 task:default => [ :pdftk, :pdfocr ]
 
 task:pdftk do
-  puts "in pdftk"
+  log "in pdftk"
+  pdftk = ContainerFactory.load("../config", "pdftk")
+  puts pdftk.create
 end
 
 task:pdfocr do
-  puts "in pdfocr"
+  log "in pdfocr"
 end
 
