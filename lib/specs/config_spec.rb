@@ -75,5 +75,9 @@ describe 'loading YAML file' do
   it 'should arg be : run.sh' do
       @c.arg.must_equal 'run.sh'
   end
+
+    it 'should image_full_name be : swinehart/pdftk:v0.1' do
+      @c.image_full_name.must_equal 'swinehart/pdftk:v0.1'
+    end
 end
 end

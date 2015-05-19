@@ -74,6 +74,10 @@ def arg
     @vols_hash = hash
   end
 
+  def image_full_name
+    "#{registry}/#{image_name}:#{tag}"
+  end
+
   def save(filename)
     File.open(filename, 'w') do |f|
       f.puts YAML.dump self
