@@ -13,6 +13,10 @@ describe Config do
     @c.arg = 'run.sh'
     @c.save('spec.yml')
   end
+
+  after do
+    File.unlink './spec.yml'
+  end
   describe 'empty config object' do
     before do
     @empty = Config.new

@@ -15,6 +15,10 @@ config.save  CONFIG_ROOT + '/pdftk.yml'
     @c = ContainerFactory.load CONFIG_ROOT, 'pdftk'
   end
 
+  after do
+    File.unlink './pdftk.yml'
+  end
+
   it 'should be : sudo docker start piper.pdftk' do
   @c.start.must_equal 'sudo docker start piper.pdftk'
   end
