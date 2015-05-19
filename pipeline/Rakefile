@@ -8,7 +8,7 @@ task:default => [ :pdftk, :pdfocr ]
 task:pdftk do
   log "in pdftk"
   pdftk = ContainerFactory.load("../config", "pdftk")
-  puts pdftk.create
+  sh pdftk.create
 end
 
 task:pdfocr do
