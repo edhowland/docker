@@ -1,7 +1,9 @@
 --- !ruby/object:Config
-image_name: ''
-container_name: ''
-registry: ''
-tag: ''
-arg: ''
-vols_hash: {}
+image_name: pdfocr
+container_name: piper.pdfocr
+registry: edhowland
+tag: v0.1
+arg: "/script/pdfocr.sh"
+vols_hash:
+  "/home/vagrant/src/docker/pipeline/script": "/script"
+  "/home/vagrant/src/docker/pipeline/output": "/input"
