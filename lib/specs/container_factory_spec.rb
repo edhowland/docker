@@ -16,4 +16,8 @@ config.save  CONFIG_ROOT + '/pdftk.yml'
   it 'should be : sudo docker start piper.pdftk' do
   @c.start.must_equal 'sudo docker start piper.pdftk'
   end
+
+  it "should create be : sudo docker create --name='name' image command" do
+    @c.create.must_equal "sudo docker create --name='name' image command"
+  end
 end
