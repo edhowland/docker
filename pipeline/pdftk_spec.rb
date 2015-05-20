@@ -12,7 +12,7 @@ describe 'pdftk' do
   end
 
   after do
-    #@app['clean'].invoke
+    @app['clean'].invoke
   end
 
   it 'should have created output/log.txt' do
