@@ -9,9 +9,21 @@ task:pdftk do
   log "in pdftk"
   pdftk = ContainerFactory.load("../config", "pdftk")
   sh pdftk.create
+
+  log "starting pdftk"
+  sh "instance=$(#{pdftk.start}) ; sudo docker wait ${instance}"
 end
 
 task:pdfocr do
   log "in pdfocr"
+  pdfocr = ContainerFactory.load("../config", "pdfocr")
+  sh pdfocr.create
+
+  log "starting pdfocr"
+  sh "instance=$(#{pdfocr.start}) ; sudo docker wait ${instance}"
 end
 
+task:clean do
+  log "cleaning up containers"
+  sh 'sudo docker rm piper.pdftk piper.pdfocr'
+end
