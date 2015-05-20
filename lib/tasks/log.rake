@@ -34,3 +34,8 @@ at_exit do
   log 'Logging finished'
 end
 
+
+task :leaves do
+  rm_f './rake.log'
+end
+

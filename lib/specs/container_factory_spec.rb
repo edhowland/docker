@@ -26,4 +26,16 @@ after do
   it "should create be : sudo docker create --name='piper.pdftk' swinehart/pdftk:v0.1 run.sh" do
     @c.create.must_equal "sudo docker create --name='piper.pdftk' swinehart/pdftk:v0.1 run.sh"
   end
+
+    it 'should rm be : sudo docker rm piper.pdftk' do
+      @c.rm.must_equal 'sudo docker rm piper.pdftk'
+    end
+
+    it 'should wait be : sudo docker wait' do
+      @c.wait.must_equal 'sudo docker wait'
+    end
+
+    it 'should start_then)wait be : sha=$(sudo docker start piper.pdftk); sudo docker wait ${sha}' do
+      @c.start_then_wait.must_equal 'sha=$(sudo docker start piper.pdftk); sudo docker wait ${sha}'
+    end
 end

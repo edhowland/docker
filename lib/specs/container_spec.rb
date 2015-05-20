@@ -52,4 +52,34 @@ describe Container do
       @c.create.must_equal "create --name='name' -v /d1/d2:/v1/v2 -v /d3/d4:/v3/v4 image command"
    end
   end
+
+  describe 'with verbs : rm and wait' do
+    before do
+  @c = Container.new 'image', 'name', 'command'
+    end
+
+    it 'should have verb : rm' do
+      @c.must_respond_to :rm
+    end
+
+  it 'should rm be : rm name' do
+      @c.rm.must_equal 'rm name'
+    end
+
+    it 'should have verb  : wait' do
+      @c.must_respond_to :wait
+    end
+
+    it 'should wait be :wait' do
+      @c.wait.must_equal 'wait'
+    end
+
+    it 'should have verb : start_then_wait' do
+      @c.must_respond_to :start_then_wait
+    end
+
+    it 'should start_then_wait be : sha=$(start name); wait ${sha}' do
+      @c.start_then_wait.must_equal 'sha=$(start name); wait ${sha}'
+  end
+  end
 end

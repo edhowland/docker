@@ -20,6 +20,8 @@ class Container
 
     end
   @verbs[:start] = Verb.new('start', @name)
+    @verbs[:rm] = Verb.new('rm', @name)
+    @verbs[:wait] = NoArgVerb.new 'wait'
   end
   def vols_hash
     @vols_hash
@@ -29,13 +31,28 @@ class Container
  @tmp_str 
   end
 
+  def verb sym
+    @tmp_str = @verbs[sym].to_s
+  compose
+  end
+
   def create
-    @tmp_str = @verbs[:create].to_s
-   compose
+    verb :create
   end
 
   def start
-  @tmp_str = @verbs[:start].to_s
-  compose
+    verb :start
+  end
+
+  def wait
+  verb :wait
+  end
+
+  def start_then_wait
+    "sha=$(#{self.start}); #{self.wait} ${sha}"
+  end
+
+  def rm
+    verb :rm
   end
 end
