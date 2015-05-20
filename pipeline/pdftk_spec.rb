@@ -13,6 +13,7 @@ describe 'pdftk' do
 
   after do
     @app['clean'].invoke
+    File.unlink './output/log.txt'
   end
 
   it 'should have created output/log.txt' do
