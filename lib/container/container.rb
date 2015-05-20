@@ -21,6 +21,7 @@ class Container
     end
   @verbs[:start] = Verb.new('start', @name)
     @verbs[:rm] = Verb.new('rm', @name)
+    @verbs[:wait] = NoArgVerb.new 'wait'
   end
   def vols_hash
     @vols_hash
@@ -41,6 +42,8 @@ class Container
   end
 
   def wait
+    @tmp_str = @verbs[:wait].to_s
+    compose
   end
 
   def start_then_wait

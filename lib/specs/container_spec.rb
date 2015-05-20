@@ -70,6 +70,10 @@ describe Container do
       @c.must_respond_to :wait
     end
 
+    it 'should wait be :wait' do
+      @c.wait.must_equal 'wait'
+    end
+
     it 'should have verb : start_then_wait' do
       @c.must_respond_to :start_then_wait
     end
