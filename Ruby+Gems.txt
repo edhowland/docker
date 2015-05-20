@@ -1,0 +1,41 @@
+Ruby+Gems.txt - explains the current Ruby and Rubygems setup needed for this toy docker.
+
+Ruby on this host id installed by 'ruby-install' in /opt/rubies
+```
+     ruby-install --system ruby 2.2.2
+```
+
+## Gems and Bundler
+Gems are installed with Bundler in the Gemfile in this directory. Use the folloing commands to get started:
+```
+  sudo gem install  bundler
+  bundle install
+```
+
+## Logging:
+ The Rakefile make use the log() method. This is suplied by the 'logging' gem:
+
+The rake module can be found in ./lib/tasks/log.rake
+
+After running rake tasks, 'rake.log' will exist in the same dir as Rakefile.
+
+Versions of Ruby
+
+## References
+For ruby-install:
+https://githFb.com/postmodern/ruby-install
+For BundlerL
+http://bundler.io
+
+## Running Specs
+The lib/specs dir contains all the minitest specs so far. To run all
+of them do:
+```
+    cd ./lib/specs
+    rake test
+````
+
+The Rakefile there contains a special TestTask labeled :test which compiles all the
+specs matching the pattern *_spec.rb into a unigied test run and report.
+The files it currently tests are in ./lib/container.
+

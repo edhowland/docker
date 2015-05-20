@@ -1,0 +1,43 @@
+# Rakefile for assembling pdftk and pdfocr
+
+import "../lib/tasks/log.rake"
+require "../lib/container"
+
+task:default => [ :pdftk, :pdfocr ]
+
+task:pdftk do
+  log "Creating pdftk"
+  pdftk = ContainerFactory.load("../config", "pdftk")
+  sh pdftk.create
+
+  sh 'sleep 2'
+  log "starting pdftk"
+  sh pdftk.start_then_wait
+end
+
+task:pdfocr do
+  log "Creating pdfocr"
+  pdfocr = ContainerFactory.load("../config", "pdfocr")
+  sh pdfocr.create
+
+  sh 'sleep 2'
+  log "starting pdfocr"
+  sh pdfocr.start_then_wait
+end
+
+task:clean do
+  log "cleaning up containers"
+  begin
+  pdftk = ContainerFactory.load("../config", "pdftk")
+    sh pdftk.rm
+  rescue => err
+  end
+
+  begin
+  pdfocr = ContainerFactory.load("../config", "pdfocr")
+    sh pdfocr.rm
+  rescue => err
+  end
+  log 'cleaning working folder'
+  rm_f Dir.glob('./working/*')
+  end

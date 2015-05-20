@@ -1,0 +1,7 @@
+# TODO.txt - things to do
+
+ConstructContainer with 2  Verbs: create and start
+  use Verb + Option to construct method string:
+    def start:  Verb.new('start', 'psdtk')
+    def create: Verb.new)'create', '/scripts/run.sh', LongOption.new('name', 'pdftk'), 
+            HashOption.new 'v', '/my/script => '/script', '/data' => '/data'
