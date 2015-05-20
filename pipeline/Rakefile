@@ -38,4 +38,9 @@ task:clean do
     sh pdfocr.rm
   rescue => err
   end
+
+desc 'a dummy task'
+task :dummy do
+  puts 'hi dummy'
+end
 end
