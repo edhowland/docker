@@ -77,5 +77,9 @@ describe Container do
     it 'should have verb : start_then_wait' do
       @c.must_respond_to :start_then_wait
     end
+
+    it 'should start_then_wait be : sha=$(start name); wait ${sha}' do
+      @c.start_then_wait.must_equal 'sha=$(start name); wait ${sha}'
+  end
   end
 end

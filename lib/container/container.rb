@@ -47,6 +47,7 @@ class Container
   end
 
   def start_then_wait
+    "sha=$(#{self.start}); #{self.wait} ${sha}"
   end
 
   def rm
