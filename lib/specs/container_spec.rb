@@ -62,6 +62,10 @@ describe Container do
       @c.must_respond_to :rm
     end
 
+  it 'should rm be : rm name' do
+      @c.rm.must_equal 'rm name'
+    end
+
     it 'should have verb  : wait' do
       @c.must_respond_to :wait
     end

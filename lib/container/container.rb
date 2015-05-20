@@ -20,6 +20,7 @@ class Container
 
     end
   @verbs[:start] = Verb.new('start', @name)
+    @verbs[:rm] = Verb.new('rm', @name)
   end
   def vols_hash
     @vols_hash
@@ -46,5 +47,7 @@ class Container
   end
 
   def rm
+    @tmp_str = @verbs[:rm].to_s
+    compose
   end
 end
