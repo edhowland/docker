@@ -22,8 +22,12 @@ class Image
     @tmp_str
   end
 
+  def verb sym
+    @tmp_str = @verbs[sym].to_s
+    compose
+  end
+
   def build
-    @tmp_str = @verbs[:build].to_s
-     compose
+    verb :build
   end
 end
