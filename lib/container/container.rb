@@ -31,19 +31,21 @@ class Container
  @tmp_str 
   end
 
-  def create
-    @tmp_str = @verbs[:create].to_s
-   compose
-  end
-
-  def start
-  @tmp_str = @verbs[:start].to_s
+  def verb sym
+    @tmp_str = @verbs[sym].to_s
   compose
   end
 
+  def create
+    verb :create
+  end
+
+  def start
+    verb :start
+  end
+
   def wait
-    @tmp_str = @verbs[:wait].to_s
-    compose
+  verb :wait
   end
 
   def start_then_wait
@@ -51,7 +53,6 @@ class Container
   end
 
   def rm
-    @tmp_str = @verbs[:rm].to_s
-    compose
+    verb :rm
   end
 end
