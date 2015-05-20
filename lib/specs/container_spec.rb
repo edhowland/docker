@@ -59,12 +59,15 @@ describe Container do
     end
 
     it 'should have verb : rm' do
+      @c.must_respond_to :rm
     end
 
-    it 'should have verb wait' do
+    it 'should have verb  : wait' do
+      @c.must_respond_to :wait
     end
 
     it 'should have verb : start_then_wait' do
+      @c.must_respond_to :start_then_wait
     end
   end
 end

@@ -38,4 +38,13 @@ class Container
   @tmp_str = @verbs[:start].to_s
   compose
   end
+
+  def wait
+  end
+
+  def start_then_wait
+  end
+
+  def rm
+  end
 end
