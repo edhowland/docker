@@ -10,7 +10,7 @@ task:pdftk do
   pdftk = ContainerFactory.load("../config", "pdftk")
   sh pdftk.create
 
-  sh 'sleep 10'
+  sh 'sleep 2'
   log "starting pdftk"
   sh pdftk.start_then_wait
 end
@@ -20,7 +20,7 @@ task:pdfocr do
   pdfocr = ContainerFactory.load("../config", "pdfocr")
   sh pdfocr.create
 
-  sh 'sleep 10'
+  sh 'sleep 2'
   log "starting pdfocr"
   sh pdfocr.start_then_wait
 end
@@ -38,4 +38,6 @@ task:clean do
     sh pdfocr.rm
   rescue => err
   end
-end
+  log 'cleaning working folder'
+  rm_f Dir.glob('./working/*')
+  end
