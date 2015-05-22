@@ -1,41 +1,38 @@
 # log.rake - Setup logging
 
 require 'logging'
-@log= Logging.logger( './rake.log' )
+@log = Logging.logger('./rake.log')
 @log.level = :debug
 
-def log_warn msg, logger=@log
+def log_warn(msg, logger = @log)
   logger.warn msg
 end
 
-def log_debug msg , logger=@log
- logger.debug msg
+def log_debug(msg, logger = @log)
+  logger.debug msg
 end
 
-def log_info msg , logger=@log
- logger.info msg
+def log_info(msg, logger = @log)
+  logger.info msg
 end
 
-def log_error msg , logger=@log
- logger.error msg
+def log_error(msg, logger = @log)
+  logger.error msg
 end
 
-def log msg
+def log(msg)
   log_info msg
 end
 
-
 log 'Logging started'
 at_exit do
-  unless $!.nil?
-    log($!) 
-  log($@)
+  unless $ERROR_INFO.nil?
+    log($ERROR_INFO)
+    log($ERROR_POSITION)
   end
   log 'Logging finished'
 end
 
-
 task :leaves do
   rm_f './rake.log'
 end
-

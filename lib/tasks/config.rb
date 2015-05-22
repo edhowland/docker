@@ -6,73 +6,49 @@ class Config
   @container_name
   @registry
   @tag
-@arg
-  @vols_hash={}
+  @arg
+  @vols_hash = {}
 
   def initialize
     @image_name = ''
     @container_name = ''
-   @registry = ''
+    @registry = ''
     @tag = ''
     @arg = ''
     @vols_hash = {}
   end
 
-   def self.load(filename)
+  def self.load(filename)
     File.open(filename, 'r') do |f|
       str = f.read
       @config = YAML.load str
     end
     @config
-  end
+ end
 
-  def image_name
-    @image_name
-  end
+  attr_reader :image_name
 
-  def image_name=(name)
-    @image_name = name
-  end
+  attr_writer :image_name
 
-  def container_name
-    @container_name
-  end
+  attr_reader :container_name
 
-  def container_name=(name)
-    @container_name = name
-  end
+  attr_writer :container_name
 
-  def registry
-    @registry
-  end
+  attr_reader :registry
 
-  def registry=(name)
-    @registry = name
-end
+  attr_writer :registry
 
-  def tag
-    @tag
-  end
+  attr_reader :tag
 
-  def tag=(name)
-    @tag= name
-  end
+  attr_writer :tag
 
-def arg
-    @arg
-  end
+  attr_reader :arg
 
-  def arg= name
-    @arg = name
-  end
+  attr_writer :arg
 
-  def vols_hash
-    @vols_hash
-  end
+  attr_reader :vols_hash
 
-  def vols_hash=(hash)
-    @vols_hash = hash
-  end
+  attr_writer :vols_hash
 
   def image_full_name
     "#{registry}/#{image_name}:#{tag}"
@@ -84,5 +60,3 @@ def arg
     end
   end
 end
-
-

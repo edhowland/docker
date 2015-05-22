@@ -4,18 +4,17 @@
 require 'minitest/autorun'
 require '../command'
 
-
 describe Composable do
   before do
-    @sudo =Sudo.new
+    @sudo = Sudo.new
   end
   describe 'compose' do
     it 'should return sudo for to_s' do
-    @sudo.to_s.must_equal 'sudo'
-  end
+      @sudo.to_s.must_equal 'sudo'
+    end
 
-  it 'should have .prev == nil' do
-    @sudo.prev.must_equal nil
+    it 'should have .prev == nil' do
+      @sudo.prev.must_equal nil
     end
 
     it 'should return sudo for compose' do
@@ -23,8 +22,6 @@ describe Composable do
     end
   end
 end
-
-
 
 describe 'compose two objects' do
   before do
@@ -34,7 +31,7 @@ describe 'compose two objects' do
   it 'should be instance of Docker' do
     @docker.class.name.must_equal 'Docker'
   end
-   it 'should return docker for Docker.to_s' do
+  it 'should return docker for Docker.to_s' do
     @docker.to_s.must_equal 'docker'
   end
 

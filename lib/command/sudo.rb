@@ -6,6 +6,6 @@ class Sudo
   include Composable
 
   def to_s
-  'sudo'
+    'sudo'
   end
 end

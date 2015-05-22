@@ -10,7 +10,7 @@ class Option
 end
 
 class UnaryOption < Option
-  def initialize value
+  def initialize(value)
     @value = value
   end
 
@@ -32,8 +32,8 @@ end
 
 class BinaryOption < Option
   def initialize(name, value)
-  @name=name
-  @value=value
+    @name = name
+    @value = value
   end
 
   def to_s

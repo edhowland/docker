@@ -10,13 +10,13 @@ module Composable
   def prev
     @previous
   end
-    def +(that)
-    that.prev=(self) 
+
+  def +(that)
+    that.prev = (self)
     that
-  end
+end
 
   def compose
-    (prev.nil? ? '' : prev.compose + ' ') + self.to_s
+    (prev.nil? ? '' : prev.compose + ' ') + to_s
   end
-
 end

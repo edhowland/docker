@@ -1,18 +1,18 @@
 # Rakefile for pdftk and pdfocr docker images
-DOCKER_ROOT="#{File.dirname(__FILE__)}/.."
-CONFIG_ROOT="#{DOCKER_ROOT}/config"
+DOCKER_ROOT = "#{File.dirname(__FILE__)}/.."
+CONFIG_ROOT = "#{DOCKER_ROOT}/config"
 
 import '../lib/tasks/log.rake'
 require DOCKER_ROOT + '/lib/image'
 
-task :default => [ './pdftk/.done', './pdfocr/.done' ]
+task default: ['./pdftk/.done', './pdfocr/.done']
 
 desc 'Build pdftk'
 file './pdftk/.done' => './pdftk/Dockerfile' do
   log 'Building pdftk'
   pdftk_image = ImageFactory.load(CONFIG_ROOT, 'pdftk')
   cd 'pdftk' do
-     sh pdftk_image.build
+    sh pdftk_image.build
     touch '.done'
   end
   log 'Built: ' + pdftk_image.name
@@ -20,7 +20,7 @@ end
 
 desc 'Build pdfocr'
 file './pdfocr/.done' => './pdfocr/Dockerfile' do
- log 'Building pdfocr'
+  log 'Building pdfocr'
   pdfocr_image = ImageFactory.load(CONFIG_ROOT, 'pdfocr')
   cd 'pdfocr' do
     sh pdfocr_image.build

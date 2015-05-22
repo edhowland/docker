@@ -6,6 +6,7 @@ module Workable
   def start
     @worked = false
   end
+
   def worked?
     @worked
   end
@@ -15,33 +16,30 @@ module Workable
   end
 end
 
-
 class StdinMock
   include Workable
-  def initialize string
- start 
+  def initialize(string)
+    start
     @string = string
   end
 
-def gets
-  work
+  def gets
+    work
     @string
-  end
+    end
 end
 
 class StdoutMock
   include Workable
   def initialize
-  start
+    start
     @string = ''
   end
 
-  def puts string
-  work
+  def puts(string)
+    work
     @string = string
   end
 
-  def string
-  @string
-  end
+  attr_reader :string
 end

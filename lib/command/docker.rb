@@ -6,6 +6,6 @@ class Docker
   include Composable
 
   def to_s
-  'docker'
+    'docker'
   end
 end
