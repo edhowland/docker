@@ -51,7 +51,7 @@ end
 
 
 def class_maker streing, &blk
-  [describe, yield, :fin]
+  [:describe, yield, :fin]
 end
 def method_maker string, &blk
   [:describe, yield, :fin]
@@ -61,9 +61,15 @@ def contents
   [:before, [:blank], :fin]
 end
 
+tree = class_maker('object') do
+  method_maker('action') do
+    contents
+  end
+end
+
 
 maker = SpecMaker.new
 
-s = maker.traverse spec
+s = maker.traverse tree #  spec
 
 puts s.flatten
