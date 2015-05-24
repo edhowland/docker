@@ -5,6 +5,15 @@ class SpecMaker
   def initialize name
     @class_name = name
   end
+
+  def header
+    "# #{@class_name.downcase}_spec.rb - Spec for #{@class_name}
+
+require 'minitest/autorun'
+require './#{@class_name.downcase}'
+
+"
+  end
   def spaces number
     spc =''
     number.times do
@@ -82,4 +91,5 @@ maker = SpecMaker.new(ARGV[0])
 
 s = maker.traverse tree #  spec
 
+  puts maker.header
 puts s.flatten
