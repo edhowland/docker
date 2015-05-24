@@ -52,7 +52,7 @@ spaces(indent) + self.send(e)
 end
 
 
-def class_maker streing, &blk
+def class_maker &blk
   [:describe_class, yield, :fin]
 end
 def method_maker string, &blk
@@ -71,7 +71,7 @@ def after_maker
   [:after, [:blank], :fin]
 end
 
-tree = class_maker('object') do
+tree = class_maker do
   method_maker('action') do
     before_maker + it_maker + after_maker
   end
