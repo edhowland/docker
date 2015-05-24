@@ -17,6 +17,21 @@ class SpecMaker
     spc
   end
 
+  def describe
+    'describe "something" do'
+  end
+
+  def before
+    'before do'
+  end
+
+  def it
+    'it "should do something" do'
+  end
+  def fin
+    'end'
+  end
+
   def traverse tree,indent=0
     tree.map do |e|
       if e.instance_of? Array
