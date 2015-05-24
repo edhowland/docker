@@ -7,7 +7,7 @@ class Verb
     @flags = flags
 
     @value = make_values(@name, @flags, @arg)
-end
+  end
 
   def make_values(name, flags, *args)
     values = [name]

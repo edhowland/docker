@@ -23,7 +23,7 @@ class VolEditorWorker
     @out.print 'Container dir : '
     container = @in.gets.chomp
     @arr << [host, container]
-    end
+  end
 
   def delete
     @out.print '# to delete? : '
@@ -45,7 +45,7 @@ class VolEditorWorker
 
   def prompt
     "(a)dd#{@arr.length > 0 ? '(d)elete, ' : ''} or (q)uit : "
-    end
+  end
 
   # syntax check inpu
   def syntax_ok?

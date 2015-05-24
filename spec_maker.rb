@@ -37,7 +37,7 @@ class SpecMaker
       if e.instance_of? Array
         traverse(e, indent +2)
   else
-spaces(indent) + e.to_s
+spaces(indent) + self.send(e)
       end
     end
   end

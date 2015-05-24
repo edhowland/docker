@@ -8,4 +8,4 @@ class HashOption < BinaryOption
       i + (i.empty? ? '' : ' ') + "-#{@name} #{v[0]}:#{v[1]}"
     end
   end
-  end
+end

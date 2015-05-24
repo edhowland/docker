@@ -2,13 +2,6 @@
 require 'yaml'
 
 class Config
-  @image_name
-  @container_name
-  @registry
-  @tag
-  @arg
-  @vols_hash = {}
-
   def initialize
     @image_name = ''
     @container_name = ''

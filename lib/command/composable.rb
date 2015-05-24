@@ -14,7 +14,7 @@ module Composable
   def +(that)
     that.prev = (self)
     that
-end
+  end
 
   def compose
     (prev.nil? ? '' : prev.compose + ' ') + to_s
