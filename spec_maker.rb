@@ -1,14 +1,5 @@
 #!/usr/bin/env ruby
 
-spec = [:describe,
-[:before,
-[:blank],
- :fin],
-[:it,
-[:blank],
-:fin],
-:fin]
-
 
 class SpecMaker
   def spaces number
