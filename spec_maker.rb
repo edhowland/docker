@@ -2,8 +2,10 @@
 
 spec = [:describe,
 [:before,
+[:blank],
  :fin],
 [:it,
+[:blank],
 :fin],
 :fin]
 
@@ -15,6 +17,10 @@ class SpecMaker
       spc << ' '
     end
     spc
+  end
+
+  def blank
+    ''
   end
 
   def describe
