@@ -49,6 +49,19 @@ spaces(indent) + self.send(e)
   end
 end
 
+
+def class_maker streing, &blk
+  [describe, yield, :fin]
+end
+def method_maker string, &blk
+  [:describe, yield, :fin]
+end
+
+def contents
+  [:before, [:blank], :fin]
+end
+
+
 maker = SpecMaker.new
 
 s = maker.traverse spec
