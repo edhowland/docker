@@ -2,6 +2,9 @@
 
 
 class SpecMaker
+  def initialize name
+    @class_name = name
+  end
   def spaces number
     spc =''
     number.times do
@@ -12,6 +15,10 @@ class SpecMaker
 
   def blank
     ''
+  end
+
+  def describe_class
+    "describe #{@class_name} do"
   end
 
   def describe
@@ -46,7 +53,7 @@ end
 
 
 def class_maker streing, &blk
-  [:describe, yield, :fin]
+  [:describe_class, yield, :fin]
 end
 def method_maker string, &blk
   [:describe, yield, :fin]
@@ -71,7 +78,7 @@ tree = class_maker('object') do
 end
 
 
-maker = SpecMaker.new
+maker = SpecMaker.new(ARGV[0])
 
 s = maker.traverse tree #  spec
 
