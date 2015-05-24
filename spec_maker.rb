@@ -4,17 +4,25 @@ spec = [:describe,
 [:before,
  :fin],
 [:it,
-finend],
-finend]
+:fin],
+:fin]
 
 
 class SpecMaker
+  def spaces number
+    spc =''
+    number.times do
+      spc << ' '
+    end
+    spc
+  end
+
   def traverse tree,indent=0
     tree.map do |e|
       if e.instance_of? Array
         traverse(e, indent +2)
   else
-e.to_s
+spaces(indent) + e.to_s
       end
     end
   end
