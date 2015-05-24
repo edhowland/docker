@@ -34,6 +34,10 @@ class SpecMaker
   def it
     'it "should do something" do'
   end
+
+  def after
+    'after do'
+  end
   def fin
     'end'
   end
@@ -57,13 +61,21 @@ def method_maker string, &blk
   [:describe, yield, :fin]
 end
 
-def contents
+def before_maker
   [:before, [:blank], :fin]
+end
+
+def it_maker
+  [:it, [:blank], :fin]
+end
+
+def after_maker
+  [:after, [:blank], :fin]
 end
 
 tree = class_maker('object') do
   method_maker('action') do
-    contents
+    before_maker + it_maker + after_maker
   end
 end
 
