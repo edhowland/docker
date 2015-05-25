@@ -61,10 +61,10 @@ spaces(indent) + self.send(e)
 end
 
 
-def class_maker &blk
+def describe_class&blk
   [:describe_class, yield, :fin]
 end
-def method_maker string, &blk
+def describe_method  &blk
   [:describe, yield, :fin]
 end
 
@@ -80,17 +80,11 @@ def after_maker
   [:after, [:blank], :fin]
 end
 
-tree = class_maker do
-  method_maker('action') do
-    before_maker + it_maker + after_maker
-  end
-end
-
 
 at_exit do
   maker = SpecMaker.new(ARGV[0])
 
-  s = maker.traverse tree 
+  s = maker.traverse @tree 
 
     puts maker.header
   puts s.flatten
