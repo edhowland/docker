@@ -68,6 +68,10 @@ def describe_method  &blk
   [:describe, yield, :fin]
 end
 
+def describe_something &blk
+  [:describe, yield, :fin]
+end
+
 def before_maker
   [:before, [:blank], :fin]
 end
@@ -81,7 +85,15 @@ def after_maker
 end
 
 
+# die if wrong number of args
+def die
+  puts "Usage : #{__FILE__} class_or_string"
+  exit
+end
+
+# run the maker code when the program exits
 at_exit do
+  die if ARGV.length != 1
   maker = SpecMaker.new(ARGV[0])
 
   s = maker.traverse @tree 
