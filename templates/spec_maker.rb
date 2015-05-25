@@ -87,9 +87,11 @@ tree = class_maker do
 end
 
 
-maker = SpecMaker.new(ARGV[0])
+at_exit do
+  maker = SpecMaker.new(ARGV[0])
 
-s = maker.traverse tree #  spec
+  s = maker.traverse tree 
 
-  puts maker.header
-puts s.flatten
+    puts maker.header
+  puts s.flatten
+end
