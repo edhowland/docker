@@ -15,13 +15,6 @@ def file_mocker(name, mode, &blk)
 end
 describe "Mocking" do
   before do
-        #@mock = MiniTest::Mock.new
-    #@mock.expect(:open,true) do |a1, a2, &blk|
-          #fmock = MiniTest::Mock.new  
-      #fmock.expect(:puts, nil, ['hello'])
-      #blk.call(fmock)
-      #a1 == 'file.txt' && a2 == 'w' && fmock.verify
-    #end
 
     @mock = file_mocker('file.txt', 'w') do |fmock|
       fmock.expect(:puts, nil, ['hello'])
