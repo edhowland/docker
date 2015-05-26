@@ -50,4 +50,4 @@ Style/SingleLineBlockParams:
 # Offense count: 2
 # Cop supports --auto-correct.
 Style/TrailingWhitespace:
-  Enabled: false
+  Enabled: true
