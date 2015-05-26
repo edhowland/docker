@@ -31,7 +31,7 @@ class VolEditorWorker
     val = @in.gets.chomp
     val = val.to_i
     @out.puts 'Illegal number' unless check.member? val
-    @arr.delete_at (val - 1) if check.member? val
+    @arr.delete_at(val - 1) if check.member? val
   end
 
   def quit

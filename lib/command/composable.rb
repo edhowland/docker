@@ -1,7 +1,6 @@
-# composable.rb - module for composing composite objects
 
 module Composable
-  @previous
+  #@previous
 
   def prev=(value)
     @previous = value
