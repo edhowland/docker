@@ -45,7 +45,7 @@ Style/OpMethod:
 # Offense count: 1
 # Configuration parameters: Methods.
 Style/SingleLineBlockParams:
-  Enabled: false
+  Enabled: true
 
 # Offense count: 2
 # Cop supports --auto-correct.
