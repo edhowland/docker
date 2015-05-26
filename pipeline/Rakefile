@@ -37,7 +37,7 @@ task :clean do
   begin
     pdfocr = ContainerFactory.load('../config', 'pdfocr')
     sh pdfocr.rm
-    rescue RuntimeError 
+  rescue RuntimeError 
     puts 'pdfocr container not created'
   end
   log 'cleaning working folder'
