@@ -15,7 +15,7 @@ class Config
     File.open(filename, 'r') do |f|
       str = f.read
       @config = YAML.load str
-    end
+      end
     @config
  end
 
