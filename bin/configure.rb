@@ -15,9 +15,19 @@ def get_value(name, default)
   (tmp.empty? ? default : tmp)
 end
 
+# edit config worker
+def ask_value(object, name)
+  sym = name.to_s + '='
+  sym = sym.to_sym
+  current =  object.send(name)
+  value = get_value(name.to_s, current)
+  object.send(sym, value)
+end
+
 # given a Config object, ask user for attributes and return new object
 def edit_config(config)
-  config.registry = get_value('registry', config.registry)
+  #config.registry = get_value('registry', config.registry)
+  ask_value config, :registry
   config.image_name = get_value('image name', config.image_name)
   config.tag = get_value('tag', config.tag)
   config.container_name = get_value('container_name', config.container_name)
