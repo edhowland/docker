@@ -26,12 +26,9 @@ end
 
 # given a Config object, ask user for attributes and return new object
 def edit_config(config)
-  #config.registry = get_value('registry', config.registry)
-  ask_value config, :registry
-  config.image_name = get_value('image name', config.image_name)
-  config.tag = get_value('tag', config.tag)
-  config.container_name = get_value('container_name', config.container_name)
-  config.arg = get_value('Command to be run', config.arg)
+  [:registry, :image_name, :tag, :container_name, :arg].each do |sym|
+    ask_value(config, sym)
+  end
   editor = VolEditor.new(config.vols_hash)
   config.vols_hash = editor.repl
   config
