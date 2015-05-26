@@ -36,11 +36,11 @@ Style/IndentationWidth:
 # Offense count: 1
 # Cop supports --auto-correct.
 Style/LeadingCommentSpace:
-  Enabled: false
+  Enabled: true
 
 # Offense count: 1
 Style/OpMethod:
-  Enabled: false
+  Enabled: true
 
 # Offense count: 1
 # Configuration parameters: Methods.

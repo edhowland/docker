@@ -1,7 +1,5 @@
 
 module Composable
-  #@previous
-
   def prev=(value)
     @previous = value
   end
@@ -10,9 +8,9 @@ module Composable
     @previous
   end
 
-  def +(that)
-    that.prev = (self)
-    that
+  def +(other)
+    other.prev = (self)
+    other
   end
 
   def compose
