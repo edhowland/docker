@@ -30,7 +30,7 @@ task :clean do
   begin
     pdftk = ContainerFactory.load('../config', 'pdftk')
     sh pdftk.rm
-  rescue RuntimeError => x 
+  rescue RuntimeError => x
     puts 'pdftk container not created'
     log_error(x)
   end
@@ -38,7 +38,7 @@ task :clean do
   begin
     pdfocr = ContainerFactory.load('../config', 'pdfocr')
     sh pdfocr.rm
-  rescue RuntimeError => x 
+  rescue RuntimeError => x
     puts 'pdfocr container not created'
     log_error(x)
   end
