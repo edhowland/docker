@@ -57,8 +57,8 @@ def def_class&blk
   [:def_class, yield, :fin]
 end
 
-def def_method &blk
-  [:def_method, yield, :fin]
+def def_method
+  [:def_method, [:blank], :fin]
 end
 
 
