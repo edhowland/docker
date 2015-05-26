@@ -53,32 +53,14 @@ spaces(indent) + self.send(e)
 end
 
 
-def describe_class&blk
-  [:describe_class, yield, :fin]
-end
-def describe_method  &blk
-  [:describe, yield, :fin]
+def def_class&blk
+  [:def_class, yield, :fin]
 end
 
-def describe_something &blk
-  [:describe, yield, :fin]
+def def_method &blk
+  [:def_method, yield, :fin]
 end
 
-def before_maker
-  [:before, [:blank], :fin]
-end
-
-def it_maker
-  [:it, [:blank], :fin]
-end
-
-def after_maker
-  [:after, [:blank], :fin]
-end
-
-def around_method &blk
-  before_maker + yield + after_maker
-end
 
 # die if wrong number of args
 def die
