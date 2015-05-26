@@ -17,7 +17,7 @@ class Config
       @config = YAML.load str
     end
     @config
- end
+  end
 
   attr_reader :image_name
 
