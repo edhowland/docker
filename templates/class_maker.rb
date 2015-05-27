@@ -10,7 +10,7 @@ class ClassMaker
   def header
     "# #{@class_name.downcase}.rb - Class for #{@class_name}
 
-
+# TODO: describe #{@class_name}
 "
   end
   def spaces number
@@ -58,11 +58,16 @@ def def_class&blk
 end
 
 def def_init
-  [:def_init_method, [:blank], :fin]
+  [:def_init_method, :fin]
 end
 
+def blank
+  [:blank]
+end
+
+
 def def_method
-  [:def_method, [:blank], :fin]
+  [:def_method, :fin]
 end
 
 
