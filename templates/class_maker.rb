@@ -46,7 +46,11 @@ end
       if e.instance_of? Array
         traverse(e, indent +2)
   else
-spaces(indent) + self.send(e)
+      if e == :outdent
+        ''
+      else
+  spaces(indent) + self.send(e)
+        end
       end
     end
   end
@@ -62,7 +66,7 @@ def def_init
 end
 
 def blank
-  [:blank]
+  [:outdent]
 end
 
 
