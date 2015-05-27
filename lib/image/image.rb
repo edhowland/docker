@@ -3,14 +3,10 @@
 
 require "#{File.dirname(__FILE__)}/../command"
 
-class Image
-  include Composable
-
+# TODO: describe Image
+class Image < DockerObject
   def initialize(name)
-    @name = name
-
-    @tmp_str = ''
-    @verbs = {}
+    super(name)
     @verbs[:build] = Verb.new('build', '.', BinaryOption.new('t',  @name))
   end
 

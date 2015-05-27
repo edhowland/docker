@@ -2,17 +2,14 @@
 
 require "#{File.dirname(__FILE__)}/../command"
 
-class Container
-  include Composable
-
+# TODO: describe Container
+class Container < DockerObject
   def initialize(image, name, command, vols_hash = {})
-    @tmp_str = ''
+    super(name)
     @image = image
-    @name = name
     @command = command
     @vols_hash = vols_hash
     @vols_options = HashOption.new('v', @vols_hash)
-    @verbs = {}
     if @vols_hash.empty?
       @verbs[:create] = MultiArgVerb.new('create', @image, @command, LongOption.new('name', @name))
     else

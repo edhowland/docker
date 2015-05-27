@@ -8,6 +8,7 @@ class DockerObject
   def initialize(name)
     @name = name
     @verbs = {}
+    @tmp_str = ''
   end
 
   def method_name
