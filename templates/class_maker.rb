@@ -8,7 +8,7 @@ class ClassMaker
   end
 
   def header
-    "# #{@class_name.downcase}_spec.rb - Spec for #{@class_name}
+    "# #{@class_name.downcase}.rb - Class for #{@class_name}
 
 
 "
@@ -33,8 +33,8 @@ class ClassMaker
   "def method_name"
   end
 
-def init_method
-  "def initialize()"
+def def_init_method
+  "def initialize"
 end
 
   def fin
@@ -55,6 +55,10 @@ end
 
 def def_class&blk
   [:def_class, yield, :fin]
+end
+
+def def_init
+  [:def_init_method, [:blank], :fin]
 end
 
 def def_method
