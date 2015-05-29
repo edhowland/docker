@@ -47,8 +47,7 @@ describe Container do
     end
 
     it 'should match host dirs to instance dirs' do
-      @c.create.must_equal("create --name='name' " + 
-                           "-v /d1/d2:/v1/v2 -v /d3/d4:/v3/v4 image command")
+      @c.create.must_equal("create --name='name' -v /d1/d2:/v1/v2 -v /d3/d4:/v3/v4 image command")
       end
     end
 
