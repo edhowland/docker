@@ -33,12 +33,12 @@ describe Container do
     end
     # rubocop:enable Metrics/LineLength
   end
-  describe 'something' do
+  describe 'with verbs rm, wait' do
     before do
-
+      build_container
     end
-    it 'should do something' do
-
+    it 'should have verb rm' do
+      @c.must_respond_to :rm
     end
   end
 end
