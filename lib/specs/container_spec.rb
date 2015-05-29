@@ -1,7 +1,7 @@
 require 'minitest/autorun'
 require '../container'
 
-def build_container(hash={})
+def build_container(hash = {})
   Container.new('image', 'name', 'command', hash)
 end
 describe Container do
