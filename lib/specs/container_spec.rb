@@ -35,7 +35,8 @@ describe Container do
 
   describe 'with volumes' do
     before do
-      @c = Container.new('image', 'name', 'command', '/d1/d2' => '/v1/v2', '/d3/d4' => '/v3/v4')
+      @c = Container.new('image', 'name', 'command',
+                         '/d1/d2' => '/v1/v2', '/d3/d4' => '/v3/v4')
     end
     it 'should have vols_hash method' do
       @c.must_respond_to :vols_hash
@@ -45,19 +46,20 @@ describe Container do
       @c.vols_hash.wont_be_empty
     end
 
-    it 'should be : create --name=\'name\' -v /d1/d2:/v1/v2 -v /d3/d4:/v3/v4 image command' do
-      @c.create.must_equal "create --name='name' -v /d1/d2:/v1/v2 -v /d3/d4:/v3/v4 image command"
-    end
-  end
-
-  describe 'with verbs : rm and wait' do
-    before do
-      @c = Container.new 'image', 'name', 'command'
+    it 'should match host dirs to instance dirs' do
+      @c.create.must_equal("create --name='name' " + 
+                           "-v /d1/d2:/v1/v2 -v /d3/d4:/v3/v4 image command")
+      end
     end
 
-    it 'should have verb : rm' do
-      @c.must_respond_to :rm
-    end
+    describe 'with verbs : rm and wait' do
+      before do
+        @c = Container.new 'image', 'name', 'command'
+      end
+
+      it 'should have verb : rm' do
+        @c.must_respond_to :rm
+      end
 
     it 'should rm be : rm name' do
       @c.rm.must_equal 'rm name'
