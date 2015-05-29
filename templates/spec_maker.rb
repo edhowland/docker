@@ -65,15 +65,15 @@ def describe_something &blk
 end
 
 def before_maker
-  [:before, [:blank], :fin]
+  [:before, [:outdent], :fin]
 end
 
 def it_maker
-  [:it, [:blank], :fin]
+  [:it, [:outdent], :fin]
 end
 
 def after_maker
-  [:after, [:blank], :fin]
+  [:after, [:outdent], :fin]
 end
 
 def around_method &blk
