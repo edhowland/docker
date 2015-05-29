@@ -36,7 +36,9 @@ describe Verb do
 
   describe 'with a LongOption and UnaryOption' do
     before do
-      @v = Verb.new('create', 'image', LongOption.new('name', 'pdftk'), UnaryOption.new('t'))
+      @v = Verb.new('create', 'image',
+                    LongOption.new('name', 'pdftk'),
+                    UnaryOption.new('t'))
     end
 
     it 'should be : create --name="pdftk" -t image' do
@@ -69,7 +71,8 @@ end
 
 describe MultiArgVerb do
   before do
-    @v = MultiArgVerb.new('create', 'image', 'command', LongOption.new('name', 'pdftk'))
+    @v = MultiArgVerb.new('create', 'image', 'command',
+                          LongOption.new('name', 'pdftk'))
   end
 
   it 'should be : create --name=\'pdftk\' image command' do
@@ -78,7 +81,9 @@ describe MultiArgVerb do
 
   describe 'with flags incl: volume hash' do
     before do
-      @v = MultiArgVerb.new('create', 'image', 'command', LongOption.new('name', 'name'), HashOption.new('v', '/d1/d2' => '/v1/v2'))
+      @v = MultiArgVerb.new('create', 'image', 'command',
+                            LongOption.new('name', 'name'),
+                            HashOption.new('v', '/d1/d2' => '/v1/v2'))
     end
 
     it 'shouldbe : create --name=\'name\' -v /d1/d2:/v1/v2 image command' do
