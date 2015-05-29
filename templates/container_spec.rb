@@ -46,5 +46,8 @@ describe Container do
     it 'should have verb wait' do
       @c.must_respond_to :wait
     end
+    it 'should wait be: wait' do
+      @c.wait.must_equal 'wait'
+    end
   end
 end
