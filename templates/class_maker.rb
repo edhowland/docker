@@ -42,19 +42,6 @@ end
     'end'
   end
 
-  def traverse tree,indent=0
-    tree.map do |e|
-      if e.instance_of? Array
-        traverse(e, indent +2)
-  else
-      if e == :outdent
-        ''
-      else
-  spaces(indent) + self.send(e)
-        end
-      end
-    end
-  end
 end
 
 
