@@ -49,5 +49,11 @@ describe Container do
     it 'should wait be: wait' do
       @c.wait.must_equal 'wait'
     end
+    it 'should have start_then_wait' do
+      @c.must_respond_to :start_then_wait
+    end
+    it 'should start_then_wait be: ...' do
+      @c.start_then_wait.must_equal 'sha=$(start name); wait ${sha}'
+    end
   end
 end
