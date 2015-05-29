@@ -37,7 +37,9 @@ describe ContainerFactory do
     @c.wait.must_equal 'sudo docker wait'
   end
 
+  # rubocop:disable Metrics/LineLength
   it 'should start_then)wait be : sha=$(sudo docker start piper.pdftk); sudo docker wait ${sha}' do
     @c.start_then_wait.must_equal 'sha=$(sudo docker start piper.pdftk); sudo docker wait ${sha}'
   end
+  # rubocop:enable Metrics/LineLength
 end
