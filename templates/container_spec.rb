@@ -43,5 +43,8 @@ describe Container do
     it 'should rm be: rm name' do
       @c.rm.must_equal 'rm name'
     end
+    it 'should have verb wait' do
+      @c.must_respond_to :wait
+    end
   end
 end
