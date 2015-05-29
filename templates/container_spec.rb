@@ -1,6 +1,9 @@
 require 'minitest/autorun'
 require './container'
 
+def build_container(hash)
+  Container.new('image', 'name', 'command', hash)
+end
 describe Container do
   describe 'with full options' do
     before do
@@ -20,9 +23,9 @@ describe Container do
       @c.start.must_equal 'start name'
     end
   end
-  describe 'something' do
+  describe 'with volume hash' do
     before do
-
+      @c = build_container '/d1/d2' => '/v1/v2', '/d3/d4' => '/v3/v4'
     end
     it 'should do something' do
 
