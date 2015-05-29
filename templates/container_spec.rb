@@ -27,9 +27,11 @@ describe Container do
     before do
       @c = build_container '/d1/d2' => '/v1/v2', '/d3/d4' => '/v3/v4'
     end
-    it 'should do something' do
-
+    # rubocop:disable Metrics/LineLength
+    it 'should have volumes' do
+      @c.create.must_equal("create --name='name' -v /d1/d2:/v1/v2 -v /d3/d4:/v3/v4 image command")
     end
+    # rubocop:enable Metrics/LineLength
   end
   describe 'something' do
     before do
