@@ -46,9 +46,11 @@ describe Container do
       @c.vols_hash.wont_be_empty
     end
 
+    # rubocop:disable Metrics/LineLength
     it 'should match host dirs to instance dirs' do
       @c.create.must_equal("create --name='name' -v /d1/d2:/v1/v2 -v /d3/d4:/v3/v4 image command")
       end
+    # rubocop:enable Metrics/LineLength
     end
 
     describe 'with verbs : rm and wait' do
