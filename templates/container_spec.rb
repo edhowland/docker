@@ -16,6 +16,9 @@ describe Container do
     it 'should have a start method' do
       @c.must_respond_to :start
     end
+    it 'should be "start name"' do
+      @c.start.must_equal 'start name'
+    end
   end
   describe 'something' do
     before do
