@@ -1,8 +1,9 @@
 #!/usr/bin/env ruby
 # class_maker.rb - ClassMaker
 
+require './template_maker'
 
-class ClassMaker
+class ClassMaker < TemplateMaker
   def initialize name
     @class_name = name
   end

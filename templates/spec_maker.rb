@@ -1,9 +1,10 @@
 #!/usr/bin/env ruby
 
+require './template_maker'
 
-class SpecMaker
+class SpecMaker < TemplateMaker
   def initialize name
-    @class_name = name
+    super name
   end
 
   def header
@@ -31,7 +32,7 @@ require './#{@class_name.downcase}'
   end
 
   def describe
-    'describe "something" do'
+    "describe 'something' do"
   end
 
   def before
@@ -39,7 +40,7 @@ require './#{@class_name.downcase}'
   end
 
   def it
-    'it "should do something" do'
+    "it 'should do something' do"
   end
 
   def after
