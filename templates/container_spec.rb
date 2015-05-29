@@ -9,6 +9,9 @@ describe Container do
     it 'should have a create method' do
       @c.must_respond_to :create
     end
+    it 'should be create ...' do
+      @c.create.must_equal "create --name='name' image command"
+    end
   end
   describe 'something' do
     before do
