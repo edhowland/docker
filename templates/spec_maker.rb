@@ -50,15 +50,6 @@ require './#{@class_name.downcase}'
     'end'
   end
 
-  def traverse tree,indent=0
-    tree.map do |e|
-      if e.instance_of? Array
-        traverse(e, indent +2)
-  else
-spaces(indent) + self.send(e)
-      end
-    end
-  end
 end
 
 
