@@ -23,9 +23,11 @@ describe ContainerFactory do
     @c.start.must_equal 'sudo docker start piper.pdftk'
   end
 
+  # rubocop:disable Metrics/LineLength
   it "should create be : sudo docker create --name='piper.pdftk' swinehart/pdftk:v0.1 run.sh" do
     @c.create.must_equal "sudo docker create --name='piper.pdftk' swinehart/pdftk:v0.1 run.sh"
   end
+  # rubocop:enable Metrics/LineLength
 
   it 'should rm be : sudo docker rm piper.pdftk' do
     @c.rm.must_equal 'sudo docker rm piper.pdftk'
