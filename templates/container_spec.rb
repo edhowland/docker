@@ -40,5 +40,8 @@ describe Container do
     it 'should have verb rm' do
       @c.must_respond_to :rm
     end
+    it 'should rm be: rm name' do
+      @c.rm.must_equal 'rm name'
+    end
   end
 end
