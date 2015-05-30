@@ -1,6 +1,5 @@
 # option.rb - Option
 
-
 # TODO: Describe Option
 class Option
   def initialize

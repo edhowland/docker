@@ -15,7 +15,6 @@ class Container < DockerObject
       @verbs[:create] = MultiArgVerb.new('create', @image, @command, LongOption.new('name', @name))
     else
       @verbs[:create] = MultiArgVerb.new('create', @image, @command, LongOption.new('name', @name), @vols_options)
-
     end
     @verbs[:start] = Verb.new('start', @name)
     @verbs[:rm] = Verb.new('rm', @name)

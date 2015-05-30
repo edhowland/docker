@@ -1,6 +1,7 @@
 # config.rb - loads config file and makes parameters available as methods
 require 'yaml'
 
+# TODO: Describe Config
 class Config
   def initialize
     @image_name = ''
