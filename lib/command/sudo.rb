@@ -2,6 +2,7 @@
 
 require "#{File.dirname(__FILE__)}/composable"
 
+# TODO: Describe Sudo
 class Sudo
   include Composable
 

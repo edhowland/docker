@@ -2,6 +2,7 @@
 
 require "#{File.dirname(__FILE__)}/composable"
 
+# TODO: Describe Docker
 class Docker
   include Composable
 

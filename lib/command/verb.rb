@@ -1,5 +1,6 @@
 # verb.rb - Verb
 
+# TODO: Describe Verb
 class Verb
   def initialize(name, arg, *flags)
     @name = name
@@ -21,6 +22,7 @@ class Verb
   end
 end
 
+# TODO: Describe NoArgVerb
 class NoArgVerb < Verb
   def initialize(name, *flags)
     @name = name
@@ -29,6 +31,7 @@ class NoArgVerb < Verb
   end
 end
 
+# TODO: Describe MultiArgVerb
 class MultiArgVerb < Verb
   def initialize(name, arg1, arg2, *flags)
     @name = name

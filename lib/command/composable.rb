@@ -1,4 +1,5 @@
 
+# TODO: Describe Composable
 module Composable
   def prev=(value)
     @previous = value
