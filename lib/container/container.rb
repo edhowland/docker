@@ -3,6 +3,7 @@
 require "#{File.dirname(__FILE__)}/../command"
 
 # rubocop:disable Metrics/LineLength
+# rubocop:disable Metrics/MethodLength
 # TODO: describe Container
 class Container < DockerObject
   def initialize(image, name, command, vols_hash = {})
