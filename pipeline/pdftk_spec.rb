@@ -17,6 +17,6 @@ describe 'pdftk' do
   end
 
   it 'should have created output/log.txt' do
-    File.exists?('./output/log.txt').must_equal true
+    File.exist?('./output/log.txt').must_equal true
   end
 end

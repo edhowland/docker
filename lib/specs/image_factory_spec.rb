@@ -6,10 +6,10 @@ require '../image'
 describe ImageFactory do
   before do
     @c = Config.new
-  @c.image_name = 'pdftk'
+    @c.image_name = 'pdftk'
     @c.container_name = 'piper.pdftk'
-  @c.registry = 'swinehart'
-  @c.tag = 'v0.1'
+    @c.registry = 'swinehart'
+    @c.tag = 'v0.1'
     @c.save('pdftk.yml')
     @i = ImageFactory.load(File.dirname(__FILE__), 'pdftk')
   end

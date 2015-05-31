@@ -3,14 +3,13 @@
 require 'minitest/autorun'
 require '../command'
 
-
 describe Option do
   before do
     @option = Option.new
   end
   it 'should be ok' do
-      @option.to_s.must_equal ''
-end
+    @option.to_s.must_equal ''
+  end
 end
 
 describe UnaryOption do
@@ -35,7 +34,7 @@ end
 
 describe BinaryOption do
   before do
-    @option=BinaryOption.new 'v', 'value'
+    @option = BinaryOption.new 'v', 'value'
   end
 
   it 'should be -v "value"' do
@@ -43,25 +42,23 @@ describe BinaryOption do
   end
 end
 
-
 describe HashOption do
   describe 'one hash element' do
     before do
-      @option=HashOption.new 'v', '/d1/d2' => '/t1/t2'
+      @option = HashOption.new 'v', '/d1/d2' => '/t1/t2'
     end
-   it 'should be -v /d1/d2:/t1/t2' do
+    it 'should be -v /d1/d2:/t1/t2' do
       @option.to_s.must_equal '-v /d1/d2:/t1/t2'
     end
   end
 
-
   describe 'multiple hash elements' do
     before do
-      @option=HashOption.new 'v', '/d1/d2' => '/t1/t2', '/d3/d4' => '/t3/t4'
+      @option = HashOption.new 'v', '/d1/d2' => '/t1/t2', '/d3/d4' => '/t3/t4'
     end
 
-  it 'should be ----------' do
+    it 'should be ----------' do
       @option.to_s.must_equal '-v /d1/d2:/t1/t2 -v /d3/d4:/t3/t4'
+    end
   end
-  end
-  end
+end

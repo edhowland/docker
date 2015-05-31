@@ -1,5 +1,6 @@
 # option.rb - Option
 
+# TODO: Describe Option
 class Option
   def initialize
   end
@@ -9,8 +10,9 @@ class Option
   end
 end
 
+# TODO: Describe UnaryOptopn
 class UnaryOption < Option
-  def initialize value
+  def initialize(value)
     @value = value
   end
 
@@ -19,6 +21,7 @@ class UnaryOption < Option
   end
 end
 
+# TODO: Describe LongOption
 class LongOption < Option
   def initialize(name, value)
     @name = name
@@ -30,10 +33,11 @@ class LongOption < Option
   end
 end
 
+# TODO: Describe BinaryOption
 class BinaryOption < Option
   def initialize(name, value)
-  @name=name
-  @value=value
+    @name = name
+    @value = value
   end
 
   def to_s

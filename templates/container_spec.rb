@@ -1,7 +1,7 @@
 require 'minitest/autorun'
-require '../container'
+require './container'
 
-def build_container(hash = {})
+def build_container(hash)
   Container.new('image', 'name', 'command', hash)
 end
 describe Container do
@@ -35,7 +35,7 @@ describe Container do
   end
   describe 'with verbs rm, wait' do
     before do
-      @c = build_container
+      build_container
     end
     it 'should have verb rm' do
       @c.must_respond_to :rm

@@ -1,44 +1,47 @@
 # Rakefile for assembling pdftk and pdfocr
 
-import "../lib/tasks/log.rake"
-require "../lib/container"
+import '../lib/tasks/log.rake'
+require '../lib/container'
 
-task:default => [ :pdftk, :pdfocr ]
+task default: [:pdftk, :pdfocr]
 
-task:pdftk do
-  log "Creating pdftk"
-  pdftk = ContainerFactory.load("../config", "pdftk")
+task :pdftk do
+  log 'Creating pdftk'
+  pdftk = ContainerFactory.load('../config', 'pdftk')
   sh pdftk.create
 
   sh 'sleep 2'
-  log "starting pdftk"
+  log 'starting pdftk'
   sh pdftk.start_then_wait
 end
 
-task:pdfocr do
-  log "Creating pdfocr"
-  pdfocr = ContainerFactory.load("../config", "pdfocr")
+task :pdfocr do
+  log 'Creating pdfocr'
+  pdfocr = ContainerFactory.load('../config', 'pdfocr')
   sh pdfocr.create
 
   sh 'sleep 2'
-  log "starting pdfocr"
+  log 'starting pdfocr'
   sh pdfocr.start_then_wait
 end
 
-task:clean do
-  log "cleaning up containers"
+task :clean do
+  log 'cleaning up containers'
   begin
-    pdftk = ContainerFactory.load("../config", "pdftk")
+    pdftk = ContainerFactory.load('../config', 'pdftk')
     sh pdftk.rm
-    rescue => err
+  rescue RuntimeError => x
+    puts 'pdftk container not created'
+    log_error(x)
   end
 
   begin
-    pdfocr = ContainerFactory.load("../config", "pdfocr")
+    pdfocr = ContainerFactory.load('../config', 'pdfocr')
     sh pdfocr.rm
-    rescue => err
+  rescue RuntimeError => x
+    puts 'pdfocr container not created'
+    log_error(x)
   end
   log 'cleaning working folder'
   rm_f Dir.glob('./working/*')
 end
-
