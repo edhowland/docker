@@ -7,6 +7,9 @@
 inherit_from:
   - ./.rubocop_exclude.yml
 
+
+# BUG: in Rubocop false positive for this cop
+# when there is a require statement prior to the class doc and class def
 # Offense count: 16
 Style/Documentation:
   Enabled: false
