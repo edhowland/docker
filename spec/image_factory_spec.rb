@@ -1,7 +1,8 @@
 # image_factory_spec.rb - specs for ImageFactory
 
 require 'minitest/autorun'
-require '../image'
+require './spec_helper'
+require 'image'
 
 describe ImageFactory do
   before do
