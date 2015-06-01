@@ -1,7 +1,9 @@
 # options_specs.rb - test Options
 
 require 'minitest/autorun'
-require '../command'
+require './spec_helper'
+require './spec_helper'
+require 'command'
 
 describe Option do
   before do
