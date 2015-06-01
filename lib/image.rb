@@ -1,3 +1,3 @@
 # image.rb - requires files in image
-require "#{File.dirname(__FILE__)}/image/image_factory.rb"
-require "#{File.dirname(__FILE__)}/image/image.rb"
+require_relative "image/image_factory"
+require_relative "image/image"

@@ -1,7 +1,8 @@
 # container_factory_spec.rb - ContainerFactory
 
 require 'minitest/autorun'
-require '../container'
+require './spec_helper'
+require 'container'
 CONFIG_ROOT = '.'
 describe ContainerFactory do
   before do

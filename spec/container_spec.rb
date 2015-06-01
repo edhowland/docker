@@ -1,5 +1,6 @@
 require 'minitest/autorun'
-require '../container'
+require './spec_helper'
+require 'container'
 
 def build_container(hash = {})
   Container.new('image', 'name', 'command', hash)

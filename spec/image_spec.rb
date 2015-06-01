@@ -1,6 +1,7 @@
 # image_spec.rb - specs for lib/image/image.rb: Image
 require 'minitest/autorun'
-require '../image'
+require './spec_helper'
+require 'image'
 
 describe Image do
   before do

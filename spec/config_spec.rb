@@ -1,7 +1,8 @@
 # config_spec.rb - testing for config.rake
 
 require 'minitest/autorun'
-require '../tasks/config'
+require './spec_helper'
+require 'tasks/config'
 
 describe Config do
   before do
