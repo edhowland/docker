@@ -2,6 +2,8 @@
 DOCKER_ROOT = "#{File.dirname(__FILE__)}/.."
 CONFIG_ROOT = "#{DOCKER_ROOT}/config"
 
+require 'date'
+require 'json'
 import '../lib/tasks/log.rake'
 require DOCKER_ROOT + '/lib/image'
 
@@ -16,7 +18,9 @@ end
 
 desc 'write out negative semaphore'
 task :build_pdftk_if do
-
+  json=`sudo docker inspect edhowland/pdftk:v0.1`
+  image = JSON.parse json
+  date = DateTime.iso8601(image[0]['Created'])
 end
 
 task :pdftk => [:build_pdftk_if, './dont_build_pdftk']
