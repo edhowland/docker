@@ -23,7 +23,8 @@ end
 
 desc 'write out negative semaphore'
 task :build_pdftk_if do
-  json=`sudo docker inspect edhowland/pdftk:v0.1`
+  pdftk_image = ImageFactory.load(CONFIG_ROOT, 'pdftk')
+  json=`sudo docker inspect #{pdftk_image.name}`
   image = JSON.parse json
   date = DateTime.iso8601(image[0]['Created'])
   image_created = time_from_date date
