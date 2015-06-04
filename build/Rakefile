@@ -7,6 +7,24 @@ require DOCKER_ROOT + '/lib/image'
 
 task default: ['./pdftk/.done', './pdfocr/.done']
 
+# here we put experimental stuff w/docker, jsom etc.
+
+desc 'build pdftk'
+file './dont_build_pdftk' do
+  puts 'building pdftk'
+end
+
+desc 'write out negative semaphore'
+task :build_pdftk_if do
+
+end
+
+task :pdftk => [:build_pdftk_if, './dont_build_pdftk']
+
+
+
+
+
 desc 'Build pdftk'
 file './pdftk/.done' => './pdftk/Dockerfile' do
   log 'Building pdftk'
