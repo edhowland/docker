@@ -2,10 +2,15 @@
 DOCKER_ROOT = "#{File.dirname(__FILE__)}/.."
 CONFIG_ROOT = "#{DOCKER_ROOT}/config"
 
+require 'time'
 require 'date'
 require 'json'
 import '../lib/tasks/log.rake'
 require DOCKER_ROOT + '/lib/image'
+
+def time_from_date datetime
+  Time.parse(datetime.to_s)
+end
 
 task default: ['./pdftk/.done', './pdfocr/.done']
 
@@ -21,6 +26,12 @@ task :build_pdftk_if do
   json=`sudo docker inspect edhowland/pdftk:v0.1`
   image = JSON.parse json
   date = DateTime.iso8601(image[0]['Created'])
+  image_created = time_from_date date
+  if image_created < File.mtime('./pdftk/Dockerfile')
+    rm_f './dont_build_pdftk'
+  else
+    touch './dont_build_pdftk'
+  end
 end
 
 task :pdftk => [:build_pdftk_if, './dont_build_pdftk']
