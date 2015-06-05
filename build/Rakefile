@@ -28,6 +28,10 @@ task :build_pdftk_if do
   image = JSON.parse json
   date = DateTime.iso8601(image[0]['Created'])
   image_created = time_from_date date
+  mtime_dockerfile = File.mtime('./pdftk/Dockerfile')
+puts "time of file : #{mtime_dockerfile}"
+  puts "Time of image created : #{image_created}"
+puts "#{(mtime_dockerfile > image_created ? 'dockerfile  > image' : 'image > dockerfile')}"
   if image_created < File.mtime('./pdftk/Dockerfile')
     rm_f './dont_build_pdftk'
   else
