@@ -94,6 +94,11 @@ task :clean do
   log 'Cleaning up semaphores : .done'
   log 'remove pdftk image'
   pdftk_image = ImageFactory.load(CONFIG_ROOT, 'pdftk')
-  sh pdftk_image.rmi
+  begin
+    sh pdftk_image.rmi
+  rescue => err
+    log 'did not remove non-existant pdftk image'
+    puts 'pdftk image did not exist. doing nothing'
+  end
   rm_f './pdfocr/.done'
 end
