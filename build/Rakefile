@@ -83,6 +83,8 @@ end
 desc 'cleans all tasks so they can be run anew'
 task :clean do
   log 'Cleaning up semaphores : .done'
-  rm_f './pdftk/.done'
+  log 'remove pdftk image'
+  pdftk_image = ImageFactory.load(CONFIG_ROOT, 'pdftk')
+  sh pdftk_image.rmi
   rm_f './pdfocr/.done'
 end
