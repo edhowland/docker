@@ -8,6 +8,8 @@ require 'json'
 import '../lib/tasks/log.rake'
 require DOCKER_ROOT + '/lib/image'
 
+# we get ISO 8601 date from JSON from Docker
+# need to convert to Unix Time to compare to File.mtime of semaphore
 def time_from_date datetime
   Time.parse(datetime.to_s)
 end
@@ -19,6 +21,12 @@ task default: ['./pdftk/.done', './pdfocr/.done']
 desc 'build pdftk'
 file './dont_build_pdftk' do
   puts 'building pdftk'
+  log 'Building pdftk'
+  pdftk_image = ImageFactory.load(CONFIG_ROOT, 'pdftk')
+  cd 'pdftk' do
+    sh pdftk_image.build
+  end
+  log 'Built: ' + pdftk_image.name
 end
 
 desc 'write out negative semaphore'
