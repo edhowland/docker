@@ -16,6 +16,12 @@ end
 
 # check if image is stale wrt to Dockerfile
 def image_stale? image, dockerfile
+  json = `#{image.docker_inspect}`
+  object = JSON.parse json
+  return true if object.length == 0
+  created_iso = object[0]['Created']
+  created_unix = time_from_datetime created_iso 
+  File.mtime(dockerfile) > created_unix
 end
 
 task default: ['./pdftk/.done', './pdfocr/.done']
