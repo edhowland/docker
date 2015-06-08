@@ -49,7 +49,7 @@ file './dont_build_pdftk' do
 end
 
 desc 'write out negative semaphore'
-task :build_pdftk_if do
+task :check_pdftk do
   pdftk_image = ImageFactory.load(CONFIG_ROOT, 'pdftk')
   if image_stale? pdftk_image, './pdftk/Dockerfile'
     rm_f './dont_build_pdftk'
@@ -58,7 +58,7 @@ task :build_pdftk_if do
   end
   end
 
-task :pdftk => [:build_pdftk_if, './dont_build_pdftk']
+task :pdftk => [:check_pdftk, './dont_build_pdftk']
 
 ##### End of experiment
 
