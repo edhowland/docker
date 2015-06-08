@@ -20,7 +20,7 @@ def image_stale? image, dockerfile
   object = JSON.parse json
   return true if object.length == 0
   created_iso = object[0]['Created']
-  created_unix = time_from_datetime created_iso 
+  created_unix = time_from_date created_iso 
   File.mtime(dockerfile) > created_unix
 end
 
@@ -51,25 +51,13 @@ end
 desc 'write out negative semaphore'
 task :build_pdftk_if do
   pdftk_image = ImageFactory.load(CONFIG_ROOT, 'pdftk')
-  json = `#{pdftk_image.docker_inspect}`
-  image = JSON.parse json
-
-  unless image.length == 0
-  date = DateTime.iso8601(image[0]['Created'])
-  image_created = time_from_date date
-  mtime_dockerfile = File.mtime('./pdftk/Dockerfile')
-puts "time of file : #{mtime_dockerfile}"
-  puts "Time of image created : #{image_created}"
-puts "#{(mtime_dockerfile > image_created ? 'dockerfile  > image' : 'image > dockerfile')}"
-  if image_created < File.mtime('./pdftk/Dockerfile')
+  if image_stale? pdftk_image, './pdftk/Dockerfile'
     rm_f './dont_build_pdftk'
   else
     touch './dont_build_pdftk'
   end
- else
     rm_f './dont_build_pdftk'
   end
-end
 
 task :pdftk => [:build_pdftk_if, './dont_build_pdftk']
 
