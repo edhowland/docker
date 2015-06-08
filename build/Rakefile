@@ -56,7 +56,6 @@ task :build_pdftk_if do
   else
     touch './dont_build_pdftk'
   end
-    rm_f './dont_build_pdftk'
   end
 
 task :pdftk => [:build_pdftk_if, './dont_build_pdftk']
