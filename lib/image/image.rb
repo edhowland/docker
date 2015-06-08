@@ -9,6 +9,7 @@ class Image < DockerObject
     super(name)
     @verbs[:build] = Verb.new('build', '.', BinaryOption.new('t',  @name))
     @verbs[:rmi] = Verb.new('rmi', @name)
+    @verbs[:inspect] = Verb.new('inspect', @name)
   end
 
   attr_reader :name
@@ -29,4 +30,8 @@ class Image < DockerObject
   def rmi
     verb :rmi
   end
+
+  def docker_inspect
+  verb :inspect
+end
 end

@@ -19,4 +19,8 @@ describe Image do
   it 'should be rmi swinehart/pdftk:v0.1' do
     @i.rmi.must_equal 'rmi swinehart/pdftk:v0.1'
   end
+
+  it 'should be imspect swinehart/pdftk:v0.1' do
+    @i.docker_inspect.must_equal 'inspect swinehart/pdftk:v0.1'
+  end
 end
