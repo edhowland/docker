@@ -15,4 +15,8 @@ describe Image do
   it 'should build be : build -t "swinehart/pdftk:v0.1" .' do
     @i.build.must_equal 'build -t "swinehart/pdftk:v0.1" .'
   end
+
+  it 'should be rmi swinehart/pdftk:v0.1' do
+    @i.rmi.must_equal 'rmi swinehart/pdftk:v0.1'
+  end
 end
