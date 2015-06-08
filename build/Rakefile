@@ -46,7 +46,7 @@ puts "#{(mtime_dockerfile > image_created ? 'dockerfile  > image' : 'image > doc
   else
     touch './dont_build_pdftk'
   end
-i else
+ else
     rm_f './dont_build_pdftk'
   end
 end
