@@ -26,6 +26,7 @@ task :build_pdftk_if do
   pdftk_image = ImageFactory.load(CONFIG_ROOT, 'pdftk')
   json=`sudo docker inspect #{pdftk_image.name}`
   image = JSON.parse json
+  unless image.length == 0
   date = DateTime.iso8601(image[0]['Created'])
   image_created = time_from_date date
   mtime_dockerfile = File.mtime('./pdftk/Dockerfile')
@@ -37,10 +38,14 @@ puts "#{(mtime_dockerfile > image_created ? 'dockerfile  > image' : 'image > doc
   else
     touch './dont_build_pdftk'
   end
+i else
+    rm_f './dont_build_pdftk'
+  end
 end
 
 task :pdftk => [:build_pdftk_if, './dont_build_pdftk']
 
+##### End of experiment
 
 
 
