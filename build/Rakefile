@@ -24,7 +24,6 @@ def image_stale? image, dockerfile
   File.mtime(dockerfile) > created_unix
 end
 
-task default: ['./pdftk/.done', './pdfocr/.done']
 
 # here we put experimental stuff w/docker, jsom etc.
 
@@ -48,7 +47,7 @@ file './dont_build_pdftk' do
   log 'Built: ' + pdftk_image.name
 end
 
-desc 'write out negative semaphore'
+desc 'write out negative semaphore for pdftk'
 task :check_pdftk do
   pdftk_image = ImageFactory.load(CONFIG_ROOT, 'pdftk')
   if image_stale? pdftk_image, './pdftk/Dockerfile'
@@ -61,9 +60,17 @@ task :check_pdftk do
 task :pdftk => [:check_pdftk, './dont_build_pdftk']
 
 
-task :check_pdfocr do
-
+desc 'build pdfocr'
+file './dont_build_pdfocr' do
+  puts 'building pdfocr'
 end
+
+desc 'write out negative semaphore for pdfocr'
+task :check_pdfocr do
+  touch './dont_build_pdfocr'
+end
+
+task :pdfocr => [:check_pdfocr,'./dont_build_pdfocr']
 ##### End of experiment
 
 
