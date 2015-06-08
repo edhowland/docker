@@ -60,21 +60,15 @@ task :check_pdftk do
 
 task :pdftk => [:check_pdftk, './dont_build_pdftk']
 
+
+task :check_pdfocr do
+
+end
 ##### End of experiment
 
 
 
 
-desc 'Build pdftk'
-file './pdftk/.done' => './pdftk/Dockerfile' do
-  log 'Building pdftk'
-  pdftk_image = ImageFactory.load(CONFIG_ROOT, 'pdftk')
-  cd 'pdftk' do
-    sh pdftk_image.build
-    touch '.done'
-  end
-  log 'Built: ' + pdftk_image.name
-end
 
 desc 'Build pdfocr'
 file './pdfocr/.done' => './pdfocr/Dockerfile' do
@@ -89,7 +83,6 @@ end
 
 desc 'cleans all tasks so they can be run anew'
 task :clean do
-  log 'Cleaning up semaphores : .done'
   log 'remove pdftk image'
   pdftk_image = ImageFactory.load(CONFIG_ROOT, 'pdftk')
   begin
@@ -98,5 +91,12 @@ task :clean do
     log 'did not remove non-existant pdftk image'
     puts 'pdftk image did not exist. doing nothing'
   end
-  rm_f './pdfocr/.done'
-end
+  log 'removing pdfocr image'
+  pdfocr_image = ImageFactory(CONFIG_ROOT, 'pdfocr')
+  begin
+    sh pdfocr_image.rmi
+  rescue => err
+    log 'did not remove non-existant pdfocr image'
+    puts 'pdfocr image did not exist. doing nothing'
+  end
+  end
