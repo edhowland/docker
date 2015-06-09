@@ -1,6 +1,6 @@
 # pdfocr docker build file
 # base on ubuntu:pdftk
-FROM#{pdftk_image.name} 
+FROM #{pdftk_image.name} 
 MAINTAINER Ed Howland
 RUN apt-get update
 RUN apt-get install -y poppler-utils 
