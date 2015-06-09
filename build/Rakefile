@@ -60,6 +60,14 @@ task :check_pdftk do
 task :pdftk => [:check_pdftk, './dont_build_pdftk']
 
 
+# so that pdfocr image is sourced from pdftk image:
+# we must interpolate the full name of pdftk image within the Dockerfile
+# before we build it
+desc 'create Dockerfile from Dockerfile.src'
+file './pdfocr/Dockerfile' => './pdfocr/Dockerfile.src' do |t|
+
+end
+
 desc 'build pdfocr'
 file './dont_build_pdfocr' do
   puts 'building pdfocr'
