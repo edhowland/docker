@@ -65,7 +65,14 @@ task :pdftk => [:check_pdftk, './dont_build_pdftk']
 # before we build it
 desc 'create Dockerfile from Dockerfile.src'
 file './pdfocr/Dockerfile' => './pdfocr/Dockerfile.src' do |t|
-
+  src = t.prerequisite_tasks[0].name 
+dest = t.name
+  contents = File.read src
+  # get the pdftk_image object
+  pdftk_image = ImageFactory.load(CONFIG_ROOT, 'pdftk')
+  compiled = nil
+  eval "compiled=\"#{contents}\""
+  File.write(dest, compiled)
 end
 
 desc 'build pdfocr'
