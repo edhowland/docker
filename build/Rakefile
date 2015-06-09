@@ -24,8 +24,8 @@ def image_stale? image, dockerfile
   File.mtime(dockerfile) > created_unix
 end
 
+task :default => [:pdftk, :pdfocr]
 
-# here we put experimental stuff w/docker, jsom etc.
 
 desc 'build pdftk'
 file './dont_build_pdftk' do
@@ -65,6 +65,7 @@ task :pdftk => [:check_pdftk, './dont_build_pdftk']
 # before we build it
 desc 'create Dockerfile from Dockerfile.src'
 file './pdfocr/Dockerfile' => './pdfocr/Dockerfile.src' do |t|
+puts 'Compiling pdfocr/Dockerfile form pdfocr/Dockerfile.src'
   src = t.prerequisite_tasks[0].name 
 dest = t.name
   contents = File.read src
@@ -106,24 +107,13 @@ end
 end
 
 task :pdfocr => [:pdftk, :check_pdfocr,'./dont_build_pdfocr']
-##### End of experiment
 
 
 
 
 
-desc 'Build pdfocr'
-file './pdfocr/.done' => './pdfocr/Dockerfile' do
-  log 'Building pdfocr'
-  pdfocr_image = ImageFactory.load(CONFIG_ROOT, 'pdfocr')
-  cd 'pdfocr' do
-    sh pdfocr_image.build
-    touch '.done'
-  end
-  log 'Built : ' + pdfocr_image.name
-end
 
-desc 'cleans all tasks so they can be run anew'
+desc 'cleans all images' 
 task :clean do
   log 'remove pdftk image'
   pdftk_image = ImageFactory.load(CONFIG_ROOT, 'pdftk')
