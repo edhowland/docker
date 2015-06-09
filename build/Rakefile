@@ -2,36 +2,133 @@
 DOCKER_ROOT = "#{File.dirname(__FILE__)}/.."
 CONFIG_ROOT = "#{DOCKER_ROOT}/config"
 
+require 'time'
+require 'date'
+require 'json'
 import '../lib/tasks/log.rake'
 require DOCKER_ROOT + '/lib/image'
 
-task default: ['./pdftk/.done', './pdfocr/.done']
+# we get ISO 8601 date from JSON from Docker
+# need to convert to Unix Time to compare to File.mtime of semaphore
+def time_from_date datetime
+  Time.parse(datetime.to_s)
+end
 
-desc 'Build pdftk'
-file './pdftk/.done' => './pdftk/Dockerfile' do
+# check if image is stale wrt to Dockerfile
+def image_stale? image, dockerfile
+  json = `#{image.docker_inspect}`
+  object = JSON.parse json
+  return true if object.length == 0
+  created_iso = object[0]['Created']
+  created_unix = time_from_date created_iso 
+  File.mtime(dockerfile) > created_unix
+end
+
+task :default => [:pdftk, :pdfocr]
+
+
+desc 'build pdftk'
+file './dont_build_pdftk' do
+  puts 'building pdftk'
   log 'Building pdftk'
   pdftk_image = ImageFactory.load(CONFIG_ROOT, 'pdftk')
+  log 'remove stale pdftk image'
+  begin
+    sh pdftk_image.rmi
+  puts 'removed pdftk image first'
+    log 'removed pdftk image'
+  rescue => err
+    log 'image did not exist'
+    puts 'did not remove non-existant pdftk image'
+  end
   cd 'pdftk' do
     sh pdftk_image.build
-    touch '.done'
   end
   log 'Built: ' + pdftk_image.name
 end
 
-desc 'Build pdfocr'
-file './pdfocr/.done' => './pdfocr/Dockerfile' do
-  log 'Building pdfocr'
-  pdfocr_image = ImageFactory.load(CONFIG_ROOT, 'pdfocr')
-  cd 'pdfocr' do
-    sh pdfocr_image.build
-    touch '.done'
+desc 'write out negative semaphore for pdftk'
+task :check_pdftk do
+  pdftk_image = ImageFactory.load(CONFIG_ROOT, 'pdftk')
+  if image_stale? pdftk_image, './pdftk/Dockerfile'
+    rm_f './dont_build_pdftk'
+  else
+    touch './dont_build_pdftk'
   end
-  log 'Built : ' + pdfocr_image.name
+  end
+
+task :pdftk => [:check_pdftk, './dont_build_pdftk']
+
+
+# so that pdfocr image is sourced from pdftk image:
+# we must interpolate the full name of pdftk image within the Dockerfile
+# before we build it
+desc 'create Dockerfile from Dockerfile.src'
+file './pdfocr/Dockerfile' => './pdfocr/Dockerfile.src' do |t|
+puts 'Compiling pdfocr/Dockerfile form pdfocr/Dockerfile.src'
+  src = t.prerequisite_tasks[0].name 
+dest = t.name
+  contents = File.read src
+  # get the pdftk_image object
+  pdftk_image = ImageFactory.load(CONFIG_ROOT, 'pdftk')
+  compiled = nil
+  eval "compiled=\"#{contents}\""
+  File.write(dest, compiled)
 end
 
-desc 'cleans all tasks so they can be run anew'
-task :clean do
-  log 'Cleaning up semaphores : .done'
-  rm_f './pdftk/.done'
-  rm_f './pdfocr/.done'
+desc 'build pdfocr'
+file './dont_build_pdfocr' do
+  puts 'building pdfocr'
+  log 'Building pdfocr'
+  pdfocr = ImageFactory.load(CONFIG_ROOT, 'pdfocr')
+  log 'remove stale pdfocr image'
+  begin
+    sh pdfocr.rmi
+  puts 'removed pdfocr image first'
+    log 'removed pdfocr image'
+  rescue => err
+    log 'image did not exist'
+    puts 'did not remove non-existant pdfocr image'
+  end
+  cd 'pdfocr' do
+    sh pdfocr.build
+  end
+  log 'Built: ' + pdfocr.name
 end
+
+desc 'write out negative semaphore for pdfocr'
+task :check_pdfocr => './pdfocr/Dockerfile' do 
+pdfocr_image = ImageFactory.load(CONFIG_ROOT, 'pdfocr')
+  if image_stale? pdfocr_image, './pdfocr/Dockerfile'
+    rm_f './dont_build_pdfocr'
+  else
+    touch './dont_build_pdfocr'
+end
+end
+
+task :pdfocr => [:pdftk, :check_pdfocr,'./dont_build_pdfocr']
+
+
+
+
+
+
+desc 'cleans all images' 
+task :clean do
+  log 'remove pdftk image'
+  pdftk_image = ImageFactory.load(CONFIG_ROOT, 'pdftk')
+  begin
+    sh pdftk_image.rmi
+  rescue => err
+    log 'did not remove non-existant pdftk image'
+    puts 'pdftk image did not exist. doing nothing'
+  end
+  log 'removing pdfocr image'
+  pdfocr_image = ImageFactory.load(CONFIG_ROOT, 'pdfocr')
+  begin
+    sh pdfocr_image.rmi
+  rescue => err
+    log 'did not remove non-existant pdfocr image'
+    puts 'pdfocr image did not exist. doing nothing'
+  end
+  end
