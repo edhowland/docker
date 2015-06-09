@@ -1,3 +1,4 @@
 rake.log
 Gemfile.lock
-build/dont_build_*build/pdfocr/Dockerfile
+build/dont_build_*
+build/pdfocr/Dockerfile
