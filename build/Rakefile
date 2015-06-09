@@ -62,22 +62,22 @@ task :pdftk => [:check_pdftk, './dont_build_pdftk']
 
 desc 'build pdfocr'
 file './dont_build_pdfocr' do
-  puts 'building pdftk'
-  log 'Building pdftk'
-  pdftk_image = ImageFactory.load(CONFIG_ROOT, 'pdftk')
-  log 'remove stale pdftk image'
+  puts 'building pdfocr'
+  log 'Building pdfocr'
+  pdfocr = ImageFactory.load(CONFIG_ROOT, 'pdfocr')
+  log 'remove stale pdfocr image'
   begin
-    sh pdftk_image.rmi
-  puts 'removed pdftk image first'
-    log 'removed pdftk image'
+    sh pdfocr.rmi
+  puts 'removed pdfocr image first'
+    log 'removed pdfocr image'
   rescue => err
     log 'image did not exist'
-    puts 'did not remove non-existant pdftk image'
+    puts 'did not remove non-existant pdfocr image'
   end
-  cd 'pdftk' do
-    sh pdftk_image.build
+  cd 'pdfocr' do
+    sh pdfocr.build
   end
-  log 'Built: ' + pdftk_image.name
+  log 'Built: ' + pdfocr.name
 end
 
 desc 'write out negative semaphore for pdfocr'
