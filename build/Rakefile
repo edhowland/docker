@@ -90,7 +90,7 @@ pdfocr_image = ImageFactory.load(CONFIG_ROOT, 'pdfocr')
 end
 end
 
-task :pdfocr => [:check_pdfocr,'./dont_build_pdfocr']
+task :pdfocr => [:pdftk, :check_pdfocr,'./dont_build_pdfocr']
 ##### End of experiment
 
 
@@ -119,7 +119,7 @@ task :clean do
     puts 'pdftk image did not exist. doing nothing'
   end
   log 'removing pdfocr image'
-  pdfocr_image = ImageFactory(CONFIG_ROOT, 'pdfocr')
+  pdfocr_image = ImageFactory.load(CONFIG_ROOT, 'pdfocr')
   begin
     sh pdfocr_image.rmi
   rescue => err
