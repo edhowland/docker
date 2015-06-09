@@ -96,7 +96,7 @@ file './dont_build_pdfocr' do
 end
 
 desc 'write out negative semaphore for pdfocr'
-task :check_pdfocr do
+task :check_pdfocr => './pdfocr/Dockerfile' do 
 pdfocr_image = ImageFactory.load(CONFIG_ROOT, 'pdfocr')
   if image_stale? pdfocr_image, './pdfocr/Dockerfile'
     rm_f './dont_build_pdfocr'
