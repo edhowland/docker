@@ -2,8 +2,7 @@
 
 require 'json'
 require 'rake'
-rake 'minitest/autorun'
-
+require 'minitest/autorun'
 
 describe 'rake can build' do
   before do
