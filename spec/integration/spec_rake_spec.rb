@@ -17,7 +17,7 @@ describe SpecRake do
     end
 
   it 'should not have a file: tmp/test' do
-      File.exists?('./tmp/test/').wont_be true
+      File.exists?('./tmp/test/').wont_equal true
      end
     
   end
