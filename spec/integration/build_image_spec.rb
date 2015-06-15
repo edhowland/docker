@@ -19,17 +19,18 @@ describe 'rake can build' do
     end
 
     it 'should exist' do
-      json=`sudo docker inspect #{pdftk.name}`
+      json=`sudo docker inspect #{@pdftk.name}`
       JSON.parse(json).length.wont_equal 0
     end
   end
   describe 'pdfocr' do
     before do
+      @pdfocr = ImageFactory.load('../../config', 'pdfocr')
       @rake.pdfocr
     end
 
     it 'should have built pdfocr' do
-      json=`sudo docker inspect edhowland/pdfocr:v0.1`
+      json=`sudo docker inspect#{@pdfocr.name} `
       JSON.parse(json).length.wont_equal 0
     end
 
