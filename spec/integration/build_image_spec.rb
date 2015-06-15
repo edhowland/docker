@@ -4,6 +4,7 @@ require 'json'
 require 'rake'
 require 'fileutils'
 require './spec_rake'
+require '../../lib/image' 
 require 'minitest/autorun'
 
 describe 'rake can build' do
@@ -13,11 +14,12 @@ describe 'rake can build' do
   end
   describe 'pdftk' do
     before do
+  @pdftk = ImageFactory.load('../../config', 'pdftk')
       @rake.pdftk
     end
 
     it 'should exist' do
-      json=`sudo docker inspect edhowland/pdftk:v0.1`
+      json=`sudo docker inspect #{pdftk.name}`
       JSON.parse(json).length.wont_equal 0
     end
   end
