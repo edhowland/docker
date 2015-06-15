@@ -13,7 +13,7 @@ class SpecRake
 
   def method_missing sym
     FileUtils.cd(@dir) do
-      @rake.invoke sym.to_s
+      @rake[sym.to_s].invoke
     end
   end
 end
