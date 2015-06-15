@@ -21,4 +21,15 @@ describe 'rake can build' do
       JSON.parse(json).length.wont_equal 0
     end
   end
+  describe 'pdfocr' do
+    before do
+      @rake.pdfocr
+    end
+
+    it 'should have built pdfocr' do
+      json=`sudo docker inspect edhowland/pdfocr:v0.1`
+      JSON.parse(json).length.wont_equal 0
+    end
+
+  end
 end
