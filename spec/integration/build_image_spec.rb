@@ -2,11 +2,14 @@
 
 require 'json'
 require 'rake'
+require 'fileutils'
+require './spec_rake'
 require 'minitest/autorun'
 
 describe 'rake can build' do
   before do
-    # rake clean - remove all existing images
+    @rake = SpecRake.new '../../build'
+      @rake.clean
   end
   describe 'pdftk' do
     before do
