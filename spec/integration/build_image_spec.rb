@@ -30,7 +30,7 @@ describe 'rake can build' do
     end
 
     it 'should have built pdfocr' do
-      json=`sudo docker inspect#{@pdfocr.name} `
+      json=`sudo docker inspect #{@pdfocr.name} `
       JSON.parse(json).length.wont_equal 0
     end
 
