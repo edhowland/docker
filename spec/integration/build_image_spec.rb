@@ -13,11 +13,12 @@ describe 'rake can build' do
   end
   describe 'pdftk' do
     before do
-      # rake invoke pdftk
+      @rake.pdftk
     end
 
     it 'should exist' do
-      # JSON of image and wont_equal 0 length
+      json=`sudo docker inspect edhowland/pdftk:v0.1`
+      JSON.parse(json).length.wont_equal 0
     end
   end
 end
