@@ -2,7 +2,7 @@
 image_name: pdfocr
 container_name: pdfocr
 registry: vagrant
-tag: v0/1
+tag: v0.1
 arg: "/script/pdfocr.sh"
 vols_hash:
   "/home/vagrant/src/docker/pipeline/script": "/script"
