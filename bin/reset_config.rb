@@ -11,7 +11,9 @@ presets = (ARGV.first == '-p')
 pdftk = Config.new
 pdftk.save(config_path('pdftk'))
 puts '../config/pdftk.yml created'
+puts 'empty pdftk.yml created' unless presets
 
 pdfocr = Config.new
 pdfocr.save(config_path('pdfocr'))
 puts '../config/pdfocr.yml created'
+puts 'empty pdfocr.yml created' unless presets
