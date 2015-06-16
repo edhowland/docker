@@ -31,7 +31,11 @@ puts '../config/pdftk.yml created'
 puts 'empty pdftk.yml created' unless presets
 puts 'pdftk.yml created with presets' if presets
 
-pdfocr = Config.new
+if presets
+  pdfocr = Config.new({image_name: 'pdfocr', container_name: 'pdfocr', tag: 'v0/1'}, :preset)
+else
+  pdfocr = Config.new
+end
 pdfocr.save(config_path('pdfocr'))
 puts '../config/pdfocr.yml created'
 puts 'empty pdfocr.yml created' unless presets
