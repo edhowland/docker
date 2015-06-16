@@ -3,5 +3,5 @@ image_name: pdftk
 container_name: pdftk
 registry: vagrant
 tag: v0.1
-arg: ''
+arg: "/script/pdftk.sh"
 vols_hash: {}

@@ -27,7 +27,7 @@ bad_option = !(ARGV.length == 0 or help or presets)
 die usage if help or bad_option
 
 if presets
-  pdftk = Config.new({image_name: 'pdftk', container_name: 'pdftk', tag: 'v0.1'}, :preset)
+  pdftk = Config.new({image_name: 'pdftk', container_name: 'pdftk', tag: 'v0.1', arg: '/script/pdftk.sh'}, :preset)
 else
   pdftk = Config.new
 end
