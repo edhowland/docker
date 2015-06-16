@@ -25,7 +25,12 @@ presets = (option == '-p' || option == '--preset')
 
 bad_option = !(ARGV.length == 0 or help or presets)
 die usage if help or bad_option
-pdftk = Config.new
+
+if presets
+  pdftk = Config.new({image_name: 'pdftk', container_name: 'pdftk', tag: 'v0.1'}, :preset)
+else
+  pdftk = Config.new
+end
 pdftk.save(config_path('pdftk'))
 puts '../config/pdftk.yml created'
 puts 'empty pdftk.yml created' unless presets

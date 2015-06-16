@@ -1,7 +1,7 @@
 --- !ruby/object:Config
-image_name: ''
-container_name: ''
-registry: ''
-tag: ''
+image_name: pdftk
+container_name: pdftk
+registry: vagrant
+tag: v0.1
 arg: ''
 vols_hash: {}
