@@ -53,7 +53,8 @@ puts '../config/pdftk.yml created'
 if presets
   pdfocr = Config.new({image_name: 'pdfocr', container_name: 'pdfocr', tag: 'v0/1', arg: '/script/pdfocr.sh'}, :preset)
   v_hash = {}
-  v_hash['__FILE__'] = '/script'
+  v_hash[script] = '/script'
+  v_hash[output] = '/input'
   pdfocr.vols_hash = v_hash
   puts 'pdfocr.yml created with presets'
 else

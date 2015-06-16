@@ -5,4 +5,5 @@ registry: vagrant
 tag: v0/1
 arg: "/script/pdfocr.sh"
 vols_hash:
-  __FILE__: "/script"
+  "/home/vagrant/src/docker/pipeline/script": "/script"
+  "/home/vagrant/src/docker/pipeline/output": "/input"
