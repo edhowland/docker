@@ -3,5 +3,5 @@ image_name: pdfocr
 container_name: pdfocr
 registry: vagrant
 tag: v0/1
-arg: ''
+arg: "/script/pdfocr.sh"
 vols_hash: {}
