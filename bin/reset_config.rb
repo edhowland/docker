@@ -7,7 +7,9 @@ CONFIG_ROOT = DOCKER_ROOT + '/config'
 require '../lib/tasks/config'
 require "#{File.dirname(__FILE__)}/config_path"
 
-presets = (ARGV.first == '-p')
+option = ARGV.first
+help = (option == '-h' || option == '--help')
+presets = (option == '-p' || option == '--preset')
 pdftk = Config.new
 pdftk.save(config_path('pdftk'))
 puts '../config/pdftk.yml created'
@@ -17,3 +19,5 @@ pdfocr = Config.new
 pdfocr.save(config_path('pdfocr'))
 puts '../config/pdfocr.yml created'
 puts 'empty pdfocr.yml created' unless presets
+
+puts 'Now use bin/configure.rb to edit the values in pdftk.yml and pdfocr.yml'
