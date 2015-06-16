@@ -7,6 +7,15 @@ CONFIG_ROOT = DOCKER_ROOT + '/config'
 require '../lib/tasks/config'
 require "#{File.dirname(__FILE__)}/config_path"
 
+usage = <<-EOD
+Usage: ./reset_configure.rb [option]
+  Options:
+          -p, --preset : Set default values for YAML files.
+          -h, --help : Print this help and exit.
+EOD
+
+
+
 option = ARGV.first
 help = (option == '-h' || option == '--help')
 presets = (option == '-p' || option == '--preset')
