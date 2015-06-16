@@ -84,3 +84,14 @@ describe Config do
     end
   end
 end
+
+describe 'Config with presets' do
+  before do
+    @c = Config.new :preset
+    @user = ENV['USER']
+  end
+
+  it 'should have current user for registry' do
+      @c.registry.must_equal @user
+  end
+end

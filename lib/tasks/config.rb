@@ -3,13 +3,17 @@ require 'yaml'
 
 # TODO: Describe Config
 class Config
-  def initialize
+  def initialize(*flags)
     @image_name = ''
     @container_name = ''
     @registry = ''
     @tag = ''
     @arg = ''
     @vols_hash = {}
+
+  if flags.first == :preset
+    @registry = ENV['USER']
+  end
   end
 
   def self.load(filename)
