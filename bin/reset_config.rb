@@ -7,6 +7,7 @@ CONFIG_ROOT = DOCKER_ROOT + '/config'
 require '../lib/tasks/config'
 require "#{File.dirname(__FILE__)}/config_path"
 
+presets = (ARGV.first == '-p')
 pdftk = Config.new
 pdftk.save(config_path('pdftk'))
 puts '../config/pdftk.yml created'

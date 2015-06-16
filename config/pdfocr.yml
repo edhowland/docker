@@ -1,7 +1,7 @@
 --- !ruby/object:Config
-image_name: pdfocr
-container_name: piper.pdfocr
-registry: vagrant
-tag: v0.1
-arg: run.sh
+image_name: ''
+container_name: ''
+registry: ''
+tag: ''
+arg: ''
 vols_hash: {}
