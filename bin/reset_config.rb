@@ -28,22 +28,22 @@ die usage if help or bad_option
 
 if presets
   pdftk = Config.new({image_name: 'pdftk', container_name: 'pdftk', tag: 'v0.1', arg: '/script/pdftk.sh'}, :preset)
+puts 'pdftk.yml created with presets' 
 else
   pdftk = Config.new
+  puts 'empty pdftk.yml created'
 end
 pdftk.save(config_path('pdftk'))
 puts '../config/pdftk.yml created'
-puts 'empty pdftk.yml created' unless presets
-puts 'pdftk.yml created with presets' if presets
 
 if presets
   pdfocr = Config.new({image_name: 'pdfocr', container_name: 'pdfocr', tag: 'v0/1', arg: '/script/pdfocr.sh'}, :preset)
+  puts 'pdfocr.yml created with presets'
 else
   pdfocr = Config.new
+puts 'empty pdfocr.yml created'
 end
 pdfocr.save(config_path('pdfocr'))
 puts '../config/pdfocr.yml created'
-puts 'empty pdfocr.yml created' unless presets
-puts 'pdfocr.yml created with presets' if presets
 
 puts 'Now use bin/configure.rb to edit the values in pdftk.yml and pdfocr.yml'
