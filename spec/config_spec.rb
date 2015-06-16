@@ -87,7 +87,7 @@ end
 
 describe 'Config with presets' do
   before do
-    @c = Config.new({image_name: 'pdftk'}, :preset)
+    @c = Config.new({image_name: 'pdftk', container_name: 'pdftk'}, :preset)
     @user = ENV['USER']
   end
 
@@ -97,5 +97,9 @@ describe 'Config with presets' do
 
   it 'dhould have image_name: pdftk' do
     @c.image_name.must_equal 'pdftk'
+  end
+
+  it 'should have container_name: pdftk' do
+    @c.container_name.must_equal 'pdftk'
   end
 end
