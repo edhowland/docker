@@ -14,11 +14,18 @@ Usage: ./reset_configure.rb [option]
           -h, --help : Print this help and exit.
 EOD
 
+def die message
+  puts message
+  exit
+end
+
 
 
 option = ARGV.first
 help = (option == '-h' || option == '--help')
 presets = (option == '-p' || option == '--preset')
+
+die usage if help
 pdftk = Config.new
 pdftk.save(config_path('pdftk'))
 puts '../config/pdftk.yml created'
