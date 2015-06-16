@@ -13,7 +13,7 @@ class Config
 
   if flags.first == :preset
     @registry = ENV['USER']
-    [:image_name, :container_name, :tag].each do |sym|
+    [:image_name, :container_name, :tag, :arg].each do |sym|
     method = sym.to_s + '='
       method = method.to_sym
       self.send(method, values[sym]) unless values[sym].nil?
