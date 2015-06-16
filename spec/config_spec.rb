@@ -87,11 +87,15 @@ end
 
 describe 'Config with presets' do
   before do
-    @c = Config.new({}, :preset)
+    @c = Config.new({image_name: 'pdftk'}, :preset)
     @user = ENV['USER']
   end
 
   it 'should have current user for registry' do
       @c.registry.must_equal @user
+  end
+
+  it 'dhould have image_name: pdftk' do
+    @c.image_name.must_equal 'pdftk'
   end
 end

@@ -13,6 +13,7 @@ class Config
 
   if flags.first == :preset
     @registry = ENV['USER']
+    @image_name = values[:image_name] unless values[:image_name].nil?
   end
   end
 
