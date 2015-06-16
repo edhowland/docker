@@ -13,8 +13,13 @@ class Config
 
   if flags.first == :preset
     @registry = ENV['USER']
-    @image_name = values[:image_name] unless values[:image_name].nil?
-    @container_name = values[:container_name] unless values[:container_name].nil?
+    [:image_name, :container_name].each do |sym|
+    method = sym.to_s + '='
+      method = method.to_sym
+      self.send(method, values[sym]) unless values[sym].nil?
+    end
+    #@image_name = values[:image_name] unless values[:image_name].nil?
+    #@container_name = values[:container_name] unless values[:container_name].nil?
   end
   end
 
