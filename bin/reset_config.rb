@@ -26,10 +26,21 @@ presets = (option == '-p' || option == '--preset')
 bad_option = !(ARGV.length == 0 or help or presets)
 die usage if help or bad_option
 
+
+dirname = File.dirname(__FILE__)
+root = File.expand_path(dirname + '/../pipeline')
+script = root + '/script'
+input = root + '/input'
+working = root + '/working'
+output = root + '/output'
+
 if presets
   pdftk = Config.new({image_name: 'pdftk', container_name: 'pdftk', tag: 'v0.1', arg: '/script/pdftk.sh'}, :preset)
   v_hash = {}
-  v_hash['__FILE__'] = '/script'
+  v_hash[script] = '/script'
+  v_hash[input] = '/input'
+  v_hash[working] = '/working'
+  v_hash[output] = '/output'
   pdftk.vols_hash = v_hash
 puts 'pdftk.yml created with presets' 
 else

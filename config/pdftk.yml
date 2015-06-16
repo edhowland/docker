@@ -5,4 +5,7 @@ registry: vagrant
 tag: v0.1
 arg: "/script/pdftk.sh"
 vols_hash:
-  __FILE__: "/script"
+  "/home/vagrant/src/docker/pipeline/script": "/script"
+  "/home/vagrant/src/docker/pipeline/input": "/input"
+  "/home/vagrant/src/docker/pipeline/working": "/working"
+  "/home/vagrant/src/docker/pipeline/output": "/output"
