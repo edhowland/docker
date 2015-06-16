@@ -84,3 +84,30 @@ describe Config do
     end
   end
 end
+
+describe 'Config with presets' do
+  before do
+    @c = Config.new({image_name: 'pdftk', container_name: 'pdftk', tag: 'v0.1', arg: 'pdftk.sh'}, :preset)
+    @user = ENV['USER']
+  end
+
+  it 'should have current user for registry' do
+      @c.registry.must_equal @user
+  end
+
+  it 'dhould have image_name: pdftk' do
+    @c.image_name.must_equal 'pdftk'
+  end
+
+  it 'should have container_name: pdftk' do
+    @c.container_name.must_equal 'pdftk'
+  end
+
+  it 'should have tag: v0.1' do
+    @c.tag.must_equal 'v0.1'
+  end
+
+  it 'should have arg: pdftk.sh' do
+    @c.arg.must_equal 'pdftk.sh'
+  end
+end

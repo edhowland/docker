@@ -3,13 +3,22 @@ require 'yaml'
 
 # TODO: Describe Config
 class Config
-  def initialize
+  def initialize(values={}, *flags)
     @image_name = ''
     @container_name = ''
     @registry = ''
     @tag = ''
     @arg = ''
     @vols_hash = {}
+
+  if flags.first == :preset
+    @registry = ENV['USER']
+    [:image_name, :container_name, :tag, :arg].each do |sym|
+    method = sym.to_s + '='
+      method = method.to_sym
+      self.send(method, values[sym]) unless values[sym].nil?
+    end
+  end
   end
 
   def self.load(filename)

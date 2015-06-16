@@ -7,10 +7,61 @@ CONFIG_ROOT = DOCKER_ROOT + '/config'
 require '../lib/tasks/config'
 require "#{File.dirname(__FILE__)}/config_path"
 
-pdftk = Config.new
+usage = <<-EOD
+Usage: ./reset_configure.rb [option]
+  Options:
+          -p, --preset : Set default values for YAML files.
+          -h, --help : Print this help and exit.
+EOD
+
+def die message
+  puts message
+  exit
+end
+
+option = ARGV.first
+help = (option == '-h' || option == '--help')
+presets = (option == '-p' || option == '--preset')
+
+bad_option = !(ARGV.length == 0 or help or presets)
+die usage if help or bad_option
+
+
+dirname = File.dirname(__FILE__)
+root = File.expand_path(dirname + '/../pipeline')
+script = root + '/script'
+input = root + '/input'
+working = root + '/working'
+output = root + '/output'
+
+if presets
+  pdftk = Config.new({image_name: 'pdftk', container_name: 'pdftk', tag: 'v0.1', arg: '/script/pdftk.sh'}, :preset)
+  v_hash = {}
+  v_hash[script] = '/script'
+  v_hash[input] = '/input'
+  v_hash[working] = '/working'
+  v_hash[output] = '/output'
+  pdftk.vols_hash = v_hash
+puts 'pdftk.yml created with presets' 
+else
+  pdftk = Config.new
+  puts 'empty pdftk.yml created'
+end
 pdftk.save(config_path('pdftk'))
 puts '../config/pdftk.yml created'
 
-pdfocr = Config.new
+if presets
+  pdfocr = Config.new({image_name: 'pdfocr', container_name: 'pdfocr', tag: 'v0.1', arg: '/script/pdfocr.sh'}, :preset)
+  v_hash = {}
+  v_hash[script] = '/script'
+  v_hash[output] = '/input'
+  pdfocr.vols_hash = v_hash
+  puts 'pdfocr.yml created with presets'
+else
+  pdfocr = Config.new
+puts 'empty pdfocr.yml created'
+end
 pdfocr.save(config_path('pdfocr'))
 puts '../config/pdfocr.yml created'
+
+puts 'Now use bin/configure.rb to edit the values in pdftk.yml and pdfocr.yml'

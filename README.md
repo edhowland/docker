@@ -8,9 +8,12 @@ A playground for trying out git and Docker.
 Run the folling commands to start:
 ```
   cd bin
-  ./reset_config.rb
+  ./reset_config.rb --preset
   ./configure.rb # answr all questions for pdftk and pdfocr
 ```
+
+This will create files: ./config/pdftk.yml, ./config/pdfocr.yml
+with assumed preset values.
 
 ## Building the images
 The Dockerfile s are in ./build/pdf*/Dockerfile
