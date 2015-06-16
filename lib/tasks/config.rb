@@ -3,7 +3,7 @@ require 'yaml'
 
 # TODO: Describe Config
 class Config
-  def initialize(*flags)
+  def initialize(values={}, *flags)
     @image_name = ''
     @container_name = ''
     @registry = ''

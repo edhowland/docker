@@ -87,7 +87,7 @@ end
 
 describe 'Config with presets' do
   before do
-    @c = Config.new :preset
+    @c = Config.new({}, :preset)
     @user = ENV['USER']
   end
 
