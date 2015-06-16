@@ -19,21 +19,22 @@ def die message
   exit
 end
 
-
-
 option = ARGV.first
 help = (option == '-h' || option == '--help')
 presets = (option == '-p' || option == '--preset')
 
-die usage if help
+bad_option = !(ARGV.length == 0 or help or presets)
+die usage if help or bad_option
 pdftk = Config.new
 pdftk.save(config_path('pdftk'))
 puts '../config/pdftk.yml created'
 puts 'empty pdftk.yml created' unless presets
+puts 'pdftk.yml created with presets' if presets
 
 pdfocr = Config.new
 pdfocr.save(config_path('pdfocr'))
 puts '../config/pdfocr.yml created'
 puts 'empty pdfocr.yml created' unless presets
+puts 'pdfocr.yml created with presets' if presets
 
 puts 'Now use bin/configure.rb to edit the values in pdftk.yml and pdfocr.yml'
