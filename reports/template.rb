@@ -15,7 +15,7 @@ rows = orm.select field_list
 patient_info = rows[0]
 rows.each do |p|
   patient_info = p
-  File.open("#{patient_info.mrn}.html", 'w') do |f|
+  File.open("MRN_#{patient_info.mrn}.html", 'w') do |f|
 
 simple_template = File.read(ARGV.first)
 
