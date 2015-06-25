@@ -8,8 +8,9 @@ require '../lib/orm'
 
 
 orm = Orm.new './patient_info.sqlite3', PatientInfo
-fields_list = %w[ patient_name  date_of_birth mrn gender referring_physician referring_pathologist accession_number specimen_type tissue_type indication  date_collected date_ordered ].join(',')
-rows = orm.select 'patient_name'
+field_list = %w[ patient_name  date_of_birth mrn gender referring_physician referring_pathologist accession_number specimen_type tissue_type indication  date_collected date_ordered ].join(',')
+
+rows = orm.select field_list
 patient_info = rows[0]
 
 simple_template = File.read(ARGV.first)
