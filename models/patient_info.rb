@@ -23,4 +23,11 @@ class PatientInfo
     attr_reader :gender
     attr_reader :referring_physician
     attr_reader :referring_pathologist
+  attr_reader :accession_number
+  attr_reader :specimen_type
+  attr_reader :tissue_type
+  attr_reader :indication
+  attr_reader :date_collected
+  attr_reader :date_ordered
+
 end
