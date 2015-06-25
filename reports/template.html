@@ -7,16 +7,16 @@ CLIA# 12a3456789</p>
 
 <table style="width:80%">
   <tr>
-    <td>Patient Name:<%= patient_info.patient_name  %></td>
-    <td>MRN:</td>
+    <td>Patient Name:<%= patient_info.patient_name %></td>
+    <td>MRN:<%= patient_info.mrn %></td>
   </tr>
   <tr>
-    <td>Date of Birth:</td>
-    <td>Referring Physician:</td>
+    <td>Date of Birth:<%= patient_info.date_of_birth %></td>
+    <td>Referring Physician:<%= patient_info.referring_physician %></td>
   </tr>
   <tr>
-    <td>Gender:</td>
-    <td>Referring Pathologist:</td>
+    <td>Gender:<%= patient_info.gender %></td>
+    <td>Referring Pathologist:<%= patient_info.referring_pathologist %></td>
   </tr>
 </table>
 
@@ -27,16 +27,16 @@ CLIA# 12a3456789</p>
 </tr>
 </thead><tbody>
 <tr>
-<td>Accession Number:</td>
-<td>Indication:</td>
+<td>Accession Number:&lt;%= patient<em>info.accession</em>number %&gt;</td>
+<td>Indication: &lt;%= patient_info.indication %&gt;</td>
 </tr>
 <tr>
-<td>Specimen Type: FFPE</td>
-<td>Date Collected:</td>
+<td>Specimen Type: &lt;%= patient<em>info.specimen</em>type %&gt;E</td>
+<td>Date Collected: &lt;%= patient<em>info.date</em>collected %&gt;</td>
 </tr>
 <tr>
 <td>Tissue Type:</td>
-<td>Date Ordered:</td>
+<td>&lt;%= patient<em>info.tissue</em>type %&gt;</td>
 </tr>
 </tbody></table>
 
