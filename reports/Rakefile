@@ -3,9 +3,10 @@
 task :default => ['template.erb.html'] 
 
 file 'template.erb.html' => 'template.html' do
-  # run template.rb on it
+  sh './template.rb template.html'
+  touch 'template.erb.html'
 end
 
 file 'template.html' => 'template.md' do
-  # run redcarpet on it
+  sh './redcarpet.rb template.md > template.html'
 end
