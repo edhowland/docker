@@ -1,0 +1,9 @@
+# Rakefile - rakefile for .mdsl -> .md
+
+task :default => ['Readme.md'] do
+  cp 'Readme.md', '..'
+end
+
+file 'Readme.md' => 'Readme.mdsl' do
+  sh './Readme.mdsl'
+end
