@@ -1,5 +1,13 @@
 # Report Pipeline
 
+## Installation
+
+```
+$ sudo apt-get install sqlite3
+$ bundle # in docker/ root
+
+```
+
 ## Creating the reports
 
 The reports depend on a template in 'template.md'. This
@@ -21,7 +29,7 @@ There will be one file per record in the database.
 - Redcarpet
 - template.rb
 
-## First Step: redcarpet
+### First Step: redcarpet
 
 First,we create the file: template.html from the file: template.md.
 This is done with the Redcrpet gem. It is used in the file 'redcarpet.rb'.
@@ -32,7 +40,7 @@ This is done with the Redcrpet gem. It is used in the file 'redcarpet.rb'.
 ./redcarpet.rb template.md > template.html
 ```
 
-## Second step: template.rb
+### Second step: template.rb
 
 Next we create all the MRN_99999.html files with 'template.rb'.
 This file uses the sqlite3 gem and the code in lib/orm and models/patient_info.rb'

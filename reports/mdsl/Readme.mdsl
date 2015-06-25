@@ -7,6 +7,13 @@ require 'mdgen'
 
 output = markdown do
   h 1, 'Report Pipeline' do |l|
+
+  h l, 'Installation'
+
+    code <<-EOC
+$ sudo apt-get install sqlite3
+$ bundle # in docker/ root
+EOC
     h l, 'Creating the reports'
 
   para <<-EOP
@@ -25,7 +32,7 @@ EOP
 
   h l, 'How it works:' do |l2|
     bullets 'Redcarpet', 'template.rb'
-      h l, 'First Step: redcarpet'
+      h l2, 'First Step: redcarpet'
 
       para <<-EOP
 First,we create the file: template.html from the file: template.md.
@@ -35,7 +42,7 @@ EOP
 
 code './redcarpet.rb template.md > template.html'
 
-      h l, 'Second step: template.rb'
+      h l2, 'Second step: template.rb'
 
   para <<-EOP
 Next we create all the MRN_99999.html files with 'template.rb'.
