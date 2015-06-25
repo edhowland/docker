@@ -1,0 +1,11 @@
+#Rakefile - rake for .md -> html -> .erb.html -> .pdf
+
+task :default => ['template.erb.html'] 
+
+file 'template.erb.html' => 'template.html' do
+  # run template.rb on it
+end
+
+file 'template.html' => 'template.md' do
+  # run redcarpet on it
+end
