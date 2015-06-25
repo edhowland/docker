@@ -24,9 +24,16 @@ describe 'make_query' do
   end
 
   describe 'select' do
-    subject { orm.select('patient_name') }
+    before { @dbmock = MiniTest::Mock.new }
+    subject { 
+      @dbmock.expect(:execute, [PatientInfo.new([])], ['SELECT patient_name FROM patient_info']) 
+      @dbmock.expect(:close, nil)
+      SQLite3::Database.stub(:open, @dbmock) do
+        orm.select('patient_name') 
+      end
+      }
 
-  specify { subject[0].must_be_instance_of PatientInfo  }
+  specify {@dbmock.verify; subject[0].must_be_instance_of PatientInfo  }
 
   end
 

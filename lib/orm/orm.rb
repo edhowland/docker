@@ -14,7 +14,14 @@ class Orm
     "SELECT #{field_list} FROM #{table_name}"
   end
 
-  def select fields_str
-    [@model.new([])]
+  def select field_list
+    begin
+      db = SQLite3::Database.open(@dbpath)
+      rs = db.execute(make_query(field_list))
+    ensure
+      db.close
+    end
+
+    rs
   end 
 end
