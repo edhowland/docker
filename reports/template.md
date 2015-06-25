@@ -7,25 +7,25 @@ CLIA# 12a3456789
 
 <table style="width:80%">
   <tr>
-    <td>Patient Name:</td>
-    <td>MRN:</td>
+    <td>Patient Name:<%= patient_info.patient_name %></td>
+    <td>MRN:<%= patient_info. %></td>
   </tr>
   <tr>
-    <td>Date of Birth:</td>
-    <td>Referring Physician:</td>
+    <td>Date of Birth:<%= patient_info. %></td>
+    <td>Referring Physician:<%= patient_info. %></td>
   </tr>
   <tr>
-    <td>Gender:</td>
-    <td>Referring Pathologist:</td>
+    <td>Gender:<%= patient_info. %></td>
+    <td>Referring Pathologist:<%= patient_info. %></td>
   </tr>
 </table>
 
 
 |  |  |
 | --- | --- |
-| Accession Number: | Indication: |
-| Specimen Type: FFPE | Date Collected: |
-| Tissue Type: | Date Ordered: |
+| Accession Number:<%= patient_info. %> | Indication: <%= patient_info. %>|
+| Specimen Type: <%= patient_info. %>E | Date Collected: <%= patient_info. %>|
+| Tissue Type: |<%= patient_info. %> Date Ordered: |<%= patient_info. %>
 
 ## RESULT SUMMARY
 
