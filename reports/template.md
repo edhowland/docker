@@ -8,24 +8,24 @@ CLIA# 12a3456789
 <table style="width:80%">
   <tr>
     <td>Patient Name:<%= patient_info.patient_name %></td>
-    <td>MRN:<%= patient_info. %></td>
+    <td>MRN:<%= patient_info.mrn %></td>
   </tr>
   <tr>
-    <td>Date of Birth:<%= patient_info. %></td>
-    <td>Referring Physician:<%= patient_info. %></td>
+    <td>Date of Birth:<%= patient_info.date_of_birth %></td>
+    <td>Referring Physician:<%= patient_info.referring_physician %></td>
   </tr>
   <tr>
-    <td>Gender:<%= patient_info. %></td>
-    <td>Referring Pathologist:<%= patient_info. %></td>
+    <td>Gender:<%= patient_info.gender %></td>
+    <td>Referring Pathologist:<%= patient_info.referring_pathologist %></td>
   </tr>
 </table>
 
 
 |  |  |
 | --- | --- |
-| Accession Number:<%= patient_info. %> | Indication: <%= patient_info. %>|
-| Specimen Type: <%= patient_info. %>E | Date Collected: <%= patient_info. %>|
-| Tissue Type: |<%= patient_info. %> Date Ordered: |<%= patient_info. %>
+| Accession Number:<%= patient_info.accession_number %> | Indication: <%= patient_info.indication %>|
+| Specimen Type: <%= patient_info.specimen_type %>E | Date Collected: <%= patient_info.date_collected %>|
+| Tissue Type: |<%= patient_info.tissue_type %>| Date Ordered: <%= patient_info.date_ordered %>|
 
 ## RESULT SUMMARY
 
