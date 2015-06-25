@@ -2,8 +2,8 @@
 
 class PatientInfo
   def initialize arr
-    @name = arr[0]
-  @dob = arr[1]
+    @patient_name = arr[0]
+  @date_of_birth = arr[1]
     @mrn = arr[2]
     @gender = arr[3]
     @referring_physician = arr[4]
@@ -17,8 +17,8 @@ class PatientInfo
 
   end
 
-  attr_reader :name
-  attr_reader :dob
+  attr_reader :patient_name
+  attr_reader :date_of_birth
   attr_reader :mrn
     attr_reader :gender
     attr_reader :referring_physician

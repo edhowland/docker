@@ -22,6 +22,6 @@ class Orm
       db.close
     end
 
-    rs
+    rs.map {|e| @model.new(e) }
   end 
 end

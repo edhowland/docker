@@ -26,7 +26,7 @@ describe 'make_query' do
   describe 'select' do
     before { @dbmock = MiniTest::Mock.new }
     subject { 
-      @dbmock.expect(:execute, [PatientInfo.new([])], ['SELECT patient_name FROM patient_info']) 
+      @dbmock.expect(:execute, [['FooBar']],  ['SELECT patient_name FROM patient_info']) 
       @dbmock.expect(:close, nil)
       SQLite3::Database.stub(:open, @dbmock) do
         orm.select('patient_name') 
