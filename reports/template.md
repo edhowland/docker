@@ -21,11 +21,17 @@ CLIA# 12a3456789
 </table>
 
 
-|  |  |
-| --- | --- |
-| Accession Number:<%= patient_info.accession_number %> | Indication: <%= patient_info.indication %>|
-| Specimen Type: <%= patient_info.specimen_type %>E | Date Collected: <%= patient_info.date_collected %>|
-| Tissue Type: |<%= patient_info.tissue_type %>| Date Ordered: <%= patient_info.date_ordered %>|
+<table style="width:80%">
+  <tr>
+<td> Accession Number:<%= patient_info.accession_number %> </td><td> Indication: <%= patient_info.indication %></td>
+</tr>
+<tr>
+<td> Specimen Type: <%= patient_info.specimen_type %>E </td><td> Date Collected: <%= patient_info.date_collected %></td>
+</tr>
+<tr>
+<td> Tissue Type:  <%= patient_info.tissue_type %> </td><td>Date Ordered: <%= patient_info.date_ordered %></td>
+</tr>
+</table>
 
 ## RESULT SUMMARY
 
