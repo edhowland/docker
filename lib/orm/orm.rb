@@ -10,6 +10,10 @@ class Orm
     snake_case @model.name
   end
 
+  def make_query field_list
+    "SELECT #{field_list} FROM #{table_name}"
+  end
+
   def select fields_str
     [@model.new([])]
   end 

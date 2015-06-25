@@ -3,6 +3,7 @@
 require '../models/patient_info'
 require '../lib/support'
 require '../lib/orm'
+require 'minitest/mock'
 require 'minitest/autorun'
 
 
@@ -14,6 +15,14 @@ describe Orm do
 
     specify { subject.must_equal 'patient_info' }
   end
+
+
+describe 'make_query' do
+    subject { orm.make_query 'patient_name' }
+
+    specify { subject.must_equal 'SELECT patient_name FROM patient_info' }
+  end
+
   describe 'select' do
     subject { orm.select('patient_name') }
 
