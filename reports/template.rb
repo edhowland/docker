@@ -11,11 +11,12 @@ template = 'template.html' # default template unless -t option is given
 filter = {}
 
 parser = OptionParser.new do |opts|
-  opts.on('-t', '--template', 'The template.html touse') do 
-    template = 'template.html'
+  opts.banner  = "template.rb [ options, ... ]\nReport on patient_info database using a template.html"
+  opts.on('-t', '--template', 'The template.html touse') do  |file|
+    template = file
   end
-  opts.on('-p', '--patient', 'Selects the patient with this name') do
-    filter = {where: "patient_name = \"FooBar\"" }
+  opts.on('-p', '--patient', 'Selects the patient with this name') do |name|
+    filter = {where: "patient_name = \"#{name}\"" }
   end
   opts.on('-h', '--help', 'Displays this help') do
     puts opts
@@ -32,12 +33,16 @@ field_list = %w[ patient_name  date_of_birth mrn gender referring_physician refe
 
 rows = orm.select field_list, filter
 
+puts "using #{template} for the template"
+puts "Found #{rows.length} rows"
 patient_info = rows[0]
 rows.each do |p|
   patient_info = p
-  File.open("MRN_#{patient_info.mrn}.html", 'w') do |f|
+  fname = "MRN_#{patient_info.mrn}.html"
+  puts "Writing #{fname}"
+  File.open(fname, 'w') do |f|
 
-simple_template = File.read(ARGV.first)
+simple_template = File.read(template)
 
 renderer = ERB.new(simple_template)
     f.puts renderer.result()
