@@ -13,5 +13,5 @@ end
 
 task :clean do
   rm_f 'template.erb.html'
-  rm_f 'MRN*.html'
+  rm_f Dir['MRN*.html']
 end
