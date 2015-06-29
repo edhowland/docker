@@ -1,11 +1,23 @@
 #!/usr/bin/env ruby
 # template.rb -  for report template.html + ERb
 
+require 'optparse'
 require 'erb'
 require '../lib/support'
 require'../models/patient_info'
 require '../lib/orm'
 
+
+parser = OptionParser.new do |opts|
+  opts.on('-h', '--help', 'Displays this help') do
+    puts opts
+    exit
+  end 
+end
+
+parser.parse!
+
+parser.parse!
 
 orm = Orm.new './patient_info.sqlite3', PatientInfo
 field_list = %w[ patient_name  date_of_birth mrn gender referring_physician referring_pathologist accession_number specimen_type tissue_type indication  date_collected date_ordered ].join(',')
