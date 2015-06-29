@@ -12,6 +12,9 @@ filter = {}
 
 parser = OptionParser.new do |opts|
   opts.banner  = "template.rb [ options, ... ]\nReport on patient_info database using a template.html"
+      opts.separator ""
+      opts.separator "Specific options:"
+
   opts.on('-t', '--template', 'The template.html touse') do  |file|
     template = file
   end
