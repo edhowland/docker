@@ -25,4 +25,8 @@ class Orm
 
     rs.map {|e| @model.new(e) }
   end 
+
+  def select_fields clauses={}
+    select @model.new([]).field_list, clauses
+  end
 end
