@@ -36,9 +36,9 @@ parser.parse!
 parser.parse!
 
 orm = Orm.new './patient_info.sqlite3', PatientInfo
-field_list = %w[ patient_name  date_of_birth mrn gender referring_physician referring_pathologist accession_number specimen_type tissue_type indication  date_collected date_ordered ].join(',')
+#field_list = %w[ patient_name  date_of_birth mrn gender referring_physician referring_pathologist accession_number specimen_type tissue_type indication  date_collected date_ordered ].join(',')
 
-rows = orm.select field_list, filter
+rows = orm.select_fields filter
 
 puts "using #{template} for the template"
 puts "Filtering on #{filter}" unless filter.empty?

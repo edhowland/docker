@@ -3,10 +3,15 @@
 task :default => ['template.erb.html'] 
 
 file 'template.erb.html' => 'template.html' do
-  sh './template.rb template.html'
+  sh './template.rb'
   touch 'template.erb.html'
 end
 
 file 'template.html' => 'template.md' do
   sh './redcarpet.rb template.md > template.html'
+end
+
+task :clean do
+  rm_f 'template.erb.html'
+  rm_f 'MRN*.html'
 end
