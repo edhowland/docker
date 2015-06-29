@@ -55,6 +55,20 @@ Then we read in 'template.html' we created in the last step.
 The ERb code interpolates the contents of the variable: patient_info and creates
 the resulting string which is written to the MRN file.
 EOP
+
+para 'Here is an example of running this program:'
+
+code './template.rb'
+
+para 'This assumes the template is in ./template.html. Which is what the output 
+of redcarpet.rb'
+
+para 'To use some other template:'
+
+code './template.rb --template othertemplate.html'
+
+para 'Use -./template.rb -h to see a list of other options. You can 
+filter based on a patient name or MRN number'
     end
   end
 
