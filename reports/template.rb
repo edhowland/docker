@@ -15,7 +15,7 @@ parser = OptionParser.new do |opts|
       opts.separator ""
       opts.separator "Specific options:"
 
-  opts.on('-t', '--template', 'The template.html touse') do  |file|
+  opts.on('--template file', String, 'The template.html touse') do  |file|
     template = file
   end
   opts.on('-p', '--patient', 'Selects the patient with this name') do |name|
