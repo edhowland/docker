@@ -10,8 +10,9 @@ class Orm
     snake_case @model.name
   end
 
-  def make_query field_list
-    "SELECT #{field_list} FROM #{table_name}"
+  def make_query field_list, clauses={}
+  filter = clauses.map {|e| "#{e[0].upcase} #{e[1]}" }.join(' ')
+    "SELECT #{field_list} FROM #{table_name}" + (filter.empty? ? '' : ' ' + filter)
   end
 
   def select field_list

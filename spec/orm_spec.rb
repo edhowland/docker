@@ -23,6 +23,12 @@ describe 'make_query' do
     specify { subject.must_equal 'SELECT patient_name FROM patient_info' }
   end
 
+  describe 'make_query with where clause in hash' do
+    subject { orm.make_query '*', where: 'patient_name = "FooBar"' }
+
+    specify { subject.must_equal 'SELECT * FROM patient_info WHERE patient_name = "FooBar"' }
+  end
+
   describe 'select' do
     before { @dbmock = MiniTest::Mock.new }
     subject { 
