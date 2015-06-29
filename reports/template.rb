@@ -18,6 +18,10 @@ parser = OptionParser.new do |opts|
   opts.on('--template file', String, 'The template.html touse') do  |file|
     template = file
   end
+
+  opts.on('--mrn MRN', String, 'Selects the patient with MRN') do |mrn|
+    filter = {where: "mrn = \"#{mrn}\"" }
+  end
   opts.on('--patient name', String, 'Selects the patient with this name') do |name|
     filter = {where: "patient_name = \"#{name}\"" }
   end
@@ -37,6 +41,7 @@ field_list = %w[ patient_name  date_of_birth mrn gender referring_physician refe
 rows = orm.select field_list, filter
 
 puts "using #{template} for the template"
+puts "Filtering on #{filter}" unless filter.empty?
 puts "Found #{rows.length} rows"
 patient_info = rows[0]
 rows.each do |p|
