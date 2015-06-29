@@ -1,7 +1,7 @@
 # orm_spec.rb - spec for class Orm
 
-require '../models/patient_info'
 require '../lib/support'
+require '../models/patient_info'
 require '../lib/orm'
 require 'minitest/mock'
 require 'minitest/autorun'

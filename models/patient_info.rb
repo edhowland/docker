@@ -1,6 +1,8 @@
 # patient_info.rb - model class PatientInfo
 
 class PatientInfo
+  include Fieldable
+
   def initialize arr
     @patient_name = arr[0]
   @date_of_birth = arr[1]
