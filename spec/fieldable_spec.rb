@@ -10,11 +10,6 @@ class UnderTest
     @field1 = ''
     @field2 = ''
   end
-
-
-  def variables_list
-    self.instance_variables
-  end
 end
 
 describe Fieldable do
