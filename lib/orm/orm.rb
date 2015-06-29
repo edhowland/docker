@@ -15,10 +15,10 @@ class Orm
     "SELECT #{field_list} FROM #{table_name}" + (filter.empty? ? '' : ' ' + filter)
   end
 
-  def select field_list
+  def select field_list, clauses={}
     begin
       db = SQLite3::Database.open(@dbpath)
-      rs = db.execute(make_query(field_list))
+      rs = db.execute(make_query(field_list, clauses))
     ensure
       db.close
     end
