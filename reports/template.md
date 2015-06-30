@@ -33,6 +33,7 @@ CLIA# 12a3456789
 </tr>
 </table>
 
+<div class="page" />
 ## RESULT SUMMARY
 
 ### Solid Tumor Targeted Mutation Panel by Next Generation Sequencing
@@ -45,6 +46,7 @@ CLIA# 12a3456789
 | Genes with Low Coverage Area (< 200x): | | |
 
 
+<div class="page" />
 ## RESULT INTERPRETATION
 
 { Some data }

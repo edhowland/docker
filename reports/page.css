@@ -1,5 +1,5 @@
 @media print {
-#scores {
+.page {
       page-break-before: always;
     }
 }
