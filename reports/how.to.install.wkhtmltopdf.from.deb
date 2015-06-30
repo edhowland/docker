@@ -1,0 +1,14 @@
+ 2570  sudo apt-get install elinks
+ 2652  sudo apt-get pdftk
+ 2653  sudo apt-get install pdftk
+ 2700  sudo apt-get remove wkhtmltopdf
+ 2701  sudo apt-get install openssl build-essential xorg libssl-d
+ 2702  sudo apt-get update
+ 2703  sudo apt-get install openssl
+ 2704  sudo apt-get install build-essential
+ 2705  sudo apt-get install xorg
+ 2706  sudo apt-get install libssl-dev
+ 2707  sudo dpkg -i wkhtmltox-0.12.2.1_linux-trusty-amd64-2.deb 
+ 2709  sudo apt-get install xfonts-75dpi
+ 2710  sudo dpkg -i wkhtmltox-0.12.2.1_linux-trusty-amd64-2.deb 
+ 2711  h|grep sudo >how.to.install.wkhtmltopdf.from.deb
