@@ -1,0 +1,4 @@
+Some Regional Laboratory  
+123 Main St., Springfield, ST 12345
+Phone: (123) 456-7890
+CLIA# 12a3456789

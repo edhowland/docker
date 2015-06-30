@@ -7,6 +7,10 @@ file 'template.erb.html' => 'template.html' do
   touch 'template.erb.html'
 end
 
+file 'header.html' => 'header.md' do
+  sh './redcarpet.rb header.md > header.html'
+end
+
 file 'template.html' => 'template.md' do
   sh './redcarpet.rb template.md > template.html'
 end
