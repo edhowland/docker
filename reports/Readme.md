@@ -2,7 +2,19 @@
 
 ## Installation
 
+Installation of 'wkhtmltopdf' for PDF generation should be from latest binary package.
+The current ubuntu-trusty64 .deb is in this folder: reports/
+The dependencies can be installed with the file: how.to.install.wkhtmltopdf.from.deb
+
+
+The data source is in the SQLite3 database: patient_info.sqlite3
+You should install the SQLite3 client: 'sqlite3' to work with the DB.
+And you must install the Ruby Gem: sqlite3
+Here are the current installation instructions:
+
+
 ```
+./how.to.install.wkhtmltopdf.from.deb
 $ sudo apt-get install sqlite3
 $ bundle # in docker/ root
 
@@ -20,14 +32,16 @@ Run rake in this directory to create all the reports:
 $ rake 
 ```
 
-The output files will be labled MRN_{patient_info.mrn}.
-There will be one file per record in the database.
+The output files will be labled MRN_{patient_info.mrn}.html, .pdf
+There will be 2 files per record in the database.
+One .html and one .pdf.
 
 
 ## How it works:
 
 - Redcarpet
 - template.rb
+- wkhtmltopdf
 
 ### First Step: redcarpet
 
@@ -70,4 +84,13 @@ To use some other template:
 
 Use -./template.rb -h to see a list of other options. You can 
 filter based on a patient name or MRN number
+
+### Third step: wkhtmltopdf
+
+To create the PDFs from the HTML files, we use the program 'wkhtmltopdf'.
+The correct (and current) options are supplied in the wrapper: 'dowk.sh'
+This script expects 2 additional files: page.css and header.html
+page.css adds page breaks for every div elements with class="page".
+header.html contains the header file that will be inserted at the top of every page.
+
 
