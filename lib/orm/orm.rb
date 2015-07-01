@@ -16,6 +16,10 @@ class Orm
   end
 
   def select field_list, clauses={}
+    db_execute field_list, clauses
+  end
+
+  def db_execute field_list, clauses={}
     begin
       db = SQLite3::Database.open(@dbpath)
       rs = db.execute(make_query(field_list, clauses))

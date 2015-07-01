@@ -41,4 +41,8 @@ describe 'make_query' do
 
   specify {@dbmock.verify; subject[0].must_be_instance_of PatientInfo  }
   end
+
+  describe 'Orm.new(dbname, options) with hash true' do
+
+  end
 end
