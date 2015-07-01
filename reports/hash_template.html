@@ -2,28 +2,28 @@
 
 <table style="width:80%">
   <tr>
-    <td>Patient Name:<%= patient_info[patient_name] %></td>
-    <td>MRN:<%= patient_info[mrn] %></td>
+    <td>Patient Name:<%= patient_info[:patient_name] %></td>
+    <td>MRN:<%= patient_info[:mrn] %></td>
   </tr>
   <tr>
-    <td>Date of Birth:<%= patient_info[date_of_birth] %></td>
-    <td>Referring Physician:<%= patient_info[referring_physician] %></td>
+    <td>Date of Birth:<%= patient_info[:date_of_birth] %></td>
+    <td>Referring Physician:<%= patient_info[:referring_physician] %></td>
   </tr>
   <tr>
-    <td>Gender:<%= patient_info[gender] %></td>
-    <td>Referring Pathologist:<%= patient_info[referring_pathologist] %></td>
+    <td>Gender:<%= patient_info[:gender] %></td>
+    <td>Referring Pathologist:<%= patient_info[:referring_pathologist] %></td>
   </tr>
 </table>
 
 <table style="width:80%">
   <tr>
-<td> Accession Number:<%= patient_info[accession_number] %> </td><td> Indication: <%= patient_info[indication] %></td>
+<td> Accession Number:<%= patient_info[:accession_number] %> </td><td> Indication: <%= patient_info[:indication] %></td>
 </tr>
 <tr>
-<td> Specimen Type: <%= patient_info[specimen_type] %>E </td><td> Date Collected: <%= patient_info[date_collected] %></td>
+<td> Specimen Type: <%= patient_info[:specimen_type] %>E </td><td> Date Collected: <%= patient_info[:date_collected] %></td>
 </tr>
 <tr>
-<td> Tissue Type:  <%= patient_info[tissue_type] %> </td><td>Date Ordered: <%= patient_info[date_ordered] %></td>
+<td> Tissue Type:  <%= patient_info[:tissue_type] %> </td><td>Date Ordered: <%= patient_info[:date_ordered] %></td>
 </tr>
 </table>
 
