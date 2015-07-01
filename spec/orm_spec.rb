@@ -55,6 +55,18 @@ describe 'make_query' do
     end
 
     it('should have called db.results_as_hash= true') { @dbmock.verify }
+  end
 
+  describe 'Orm.new ..., "table_name"' do
+    let(:orm) { Orm.new '', 'patient_info' }
+    let(:mock) { Minitest::Mock.new }
+    subject do
+      mock.expect(:results_as_hash=, true, [true])
+      mock.expect(:execute, [{}], ['SELECT * FROM patient_info'])
+      mock.expect(:close, nil)
+      SQLite3::Database.stub(:open, mock, [''])  { orm.select '*'}
+    end
+
+    specify { subject[0].must_be_instance_of Hash; mock.verify }
   end
 end

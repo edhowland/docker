@@ -28,7 +28,11 @@ class Orm
 
   def select field_list, clauses={}
     rs = db_execute field_list, clauses
-    rs.map {|e| @model.new(e) }
+    if @model.instance_of? String
+      rs
+    else
+      rs.map {|e| @model.new(e) }
+    end
   end
 
   def db_execute field_list, clauses={}
