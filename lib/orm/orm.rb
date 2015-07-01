@@ -5,8 +5,14 @@ class Orm
     @dbpath = dbpath
     @model = model
   end
-# return the model name or the table name if it a string
 
+  # set any db options such as returning rows as Hashes
+  def set_db_options db
+    db.results_as_hash = true if @model.instance_of? String
+  end
+
+
+# return the model name or the table name if it a string
   def table_name
     if @model.instance_of? String
       @model
@@ -28,6 +34,7 @@ class Orm
   def db_execute field_list, clauses={}
     begin
       db = SQLite3::Database.open(@dbpath)
+      set_db_options db
       rs = db.execute(make_query(field_list, clauses))
     ensure
       db.close
