@@ -1,6 +1,12 @@
 #Rakefile - rake for .md -> html -> .erb.html -> .pdf
 
-task :default => ['template.erb.html'] 
+# replace_extension - .html => pdf
+def replace_ext fname, ext
+  fname =~ /(.*\.).*/
+  "#{$1}#{ext}"
+end
+
+task :default => ['template.erb.html', :pdfs] 
 
 file 'template.erb.html' => 'template.html' do
   sh './template.rb'
@@ -18,4 +24,10 @@ end
 task :clean do
   rm_f 'template.erb.html'
   rm_f Dir['MRN*.html']
+end
+
+task :pdfs do
+  Dir['MRN_*.html'].each do |file|
+    sh "./dowk.sh #{file} #{replace_ext(file, 'pdf')}"
+  end
 end
