@@ -16,7 +16,8 @@ class Orm
   end
 
   def select field_list, clauses={}
-    db_execute field_list, clauses
+    rs = db_execute field_list, clauses
+    rs.map {|e| @model.new(e) }
   end
 
   def db_execute field_list, clauses={}
@@ -27,7 +28,7 @@ class Orm
       db.close
     end
 
-    rs.map {|e| @model.new(e) }
+    rs
   end 
 
   def select_fields clauses={}
