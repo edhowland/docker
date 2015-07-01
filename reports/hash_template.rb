@@ -6,7 +6,7 @@ require 'erb'
 require '../lib/support'
 require '../lib/orm'
 
-template = 'template.html' # default template unless -t option is given
+template = 'hash_template.html' # default template unless --template option is given
 filter = {}
 
 parser = OptionParser.new do |opts|
