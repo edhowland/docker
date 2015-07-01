@@ -42,8 +42,8 @@ describe 'make_query' do
   specify {@dbmock.verify; subject[0].must_be_instance_of PatientInfo  }
   end
 
-  describe 'Orm.new(dbname, Hash' do
-    let(:orm) { Orm.new '', Hash }
+  describe "Orm.new(dbname, 'patient_name'" do
+    let(:orm) { Orm.new '', 'patient_info' }
     before do
       @dbmock = Minitest::Mock.new
       @dbmock.expect(:results_as_hash=, true, [true])

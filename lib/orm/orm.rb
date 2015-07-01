@@ -5,9 +5,14 @@ class Orm
     @dbpath = dbpath
     @model = model
   end
+# return the model name or the table name if it a string
 
   def table_name
-    snake_case @model.name
+    if @model.instance_of? String
+      @model
+    else
+      snake_case @model.name
+    end
   end
 
   def make_query field_list, clauses={}
