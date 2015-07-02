@@ -30,11 +30,10 @@ class Orm
     hash.select {|e| e[0].instance_of? String }.reduce({}) {|i,j|i[j[0].to_sym] = j[1];   i}
   end
 
-
   def select field_list, clauses={}
     rs = db_execute field_list, clauses
     if @model.instance_of? String
-      rs.select {|l| l[0].instance_of? String } #.reduce({}) {|i,j| i[j[0].to_sym] = j[1]; i }
+      rs.map {|e| key_string_to_sym e }
     else
       rs.map {|e| @model.new(e) }
     end

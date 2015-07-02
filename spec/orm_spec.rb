@@ -74,7 +74,7 @@ describe 'make_query' do
       SQLite3::Database.stub(:open, mock, [''])  { orm.select '*'}
     end
 
-    specify { skip(); subject[0].must_be_instance_of Hash; mock.verify }
+    specify {  subject[0].must_be_instance_of Hash; mock.verify }
   end
 
   describe 'Orm.new ..., ModelName' do
