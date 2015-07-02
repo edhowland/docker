@@ -43,5 +43,35 @@ EOC
   para "Here we instantiate the Orm class with a string for table name: 'patient_info'"
   end # of h l2
 
+  
+  h(l, 'Models') do |l2|
+    para <<-EOP
+Models are simple Ruby classes with attributes matching the fields in database  table.
+Each attribute must at least attr_reader method.
+The class must also include the module Fieldable.
+This allows forautomatic generation of field lists for database queries.
+The constructor must take an array. This allows
+the select method of Orm class to map the returned
+rows from the query into instances of the model class.
+Within the constructor, each element of the array of columns
+must be assigned to individual named attributes.
+et's look at simple example:
+EOP
+
+  code <<-EOC
+class PatientInfo
+  include Fieldable
+
+  def initialize arr
+    @patient_name = arr[0]
+  @date_of_birth = arr[1]
+    @mrn = arr[2]
+    @gender = arr[3]
+    @referring_physician = arr[4]
+
+EOC
+
+  end # of h 2
+
 
 end # of h1
