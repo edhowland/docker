@@ -32,6 +32,15 @@ EOC
 
 
     h l2, 'Second Form: Table name as string'
+
+  code <<-EOC
+
+$ irb -r ../lib/support   -r ../lib/orm
+>> orm = Orm.new './patient_info.sqlite3', 'patient_info'
+=> #<Orm:0x007f5d3e1d24d0 @dbpath="./patient_info.sqlite3", @model="patient_info
+EOC
+
+  para "Here we instantiate the Orm class with a string for table name: 'patient_info'"
   end # of h l2
 
 
