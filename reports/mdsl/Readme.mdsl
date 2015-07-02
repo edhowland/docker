@@ -8,6 +8,22 @@ require 'mdgen'
 output = markdown do
   h 1, 'Report Pipeline' do |l|
 
+  h l, 'Abstract'
+
+  para <<-EOP
+Reports on patient lab results are generatedin this directory. The data comes from
+a SQLite3 database. Several tools are used to extract the data, format the results
+and then generate PDF reports.
+The following tools are used: 
+EOP
+
+  bullets 'Redcarpet - Github Flavored Markdown Processor',
+'SQLite3 - Database Engine', 
+'ERb - Ruby Templating Engine',
+'Wkhtmltopdf - PDF Generator'
+
+  para 'These tools are discussed in this document.'
+
   h l, 'Installation'
 
   para <<-EOP
