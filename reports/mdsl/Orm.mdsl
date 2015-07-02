@@ -80,8 +80,21 @@ class PatientInfo
   # ... more attr_reader s
 end
 EOC
-
   end # of h 2
 
+
+  h l, 'Selecting'
+
+  code <<-EOC
+$ irb -r ../lib/support -r ../models/patient_info.rb  -r ../lib/orm
+>> orm = Orm.new './patient_info.sqlite3', PatientInfo
+=> #<Orm:0x007f1f87d05fb8 @dbpath="./patient_info.sqlite3", @model=PatientInfo>
+>> orm.select_fields.each do |patient_info|
+?> puts patient_info.mrn
+>> end
+123456
+121212
+987654
+EOC
 
 end # of h1
