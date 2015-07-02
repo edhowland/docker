@@ -105,4 +105,27 @@ EOP
 
   para 'Let\'s look at an example using the Hash form:'
 
+
+  code <<-EOC
+$ irb -r ../lib/support -r ../lib/orm
+>> orm = Orm.new './patient_info.sqlite3', 'patient_info'
+=> #<Orm:0x007fc289feea68 @dbpath="./patient_info.sqlite3", @model="patient_info">
+>> orm.select('patient_name, date_of_birth', where: "mrn = '123456'").each do |row|
+?> puts "Name: \#{row[:patient_name]} | DOB: \#{row[:date_of_birth]}"
+>> end
+Name: Foo Bar | DOB: 1987-03-24
+EOC
+
+  para <<-EOP
+Here we use the table name form  of the constructor.
+Using the normal form of the select method,
+we pass a list of field names as string.
+We also pass an optional hash containing a number of clauses, such as where and limit
+EOP
+
+  para <<-EOP
+Each row from the query is a Ruby Hash.
+We can index each column with a symbol of the field name. ':date_of_birth'
+EOP
+
 end # of h1
