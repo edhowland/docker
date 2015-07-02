@@ -26,10 +26,15 @@ class Orm
     "SELECT #{field_list} FROM #{table_name}" + (filter.empty? ? '' : ' ' + filter)
   end
 
+  def key_string_to_sym hash
+    hash
+  end
+
+
   def select field_list, clauses={}
     rs = db_execute field_list, clauses
     if @model.instance_of? String
-      rs
+      rs.select {|l| l[0].instance_of? String } #.reduce({}) {|i,j| i[j[0].to_sym] = j[1]; i }
     else
       rs.map {|e| @model.new(e) }
     end

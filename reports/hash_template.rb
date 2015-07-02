@@ -40,11 +40,12 @@ rows = orm.select '*', filter
 patient_info = rows[0]
 
 puts "using #{template} for the template"
+puts "patient_info.class.name: #{patient_info.class.name}"
 puts "Filtering on #{filter}" unless filter.empty?
 puts "Found #{rows.length} rows"
 rows.each do |p|
   patient_info = p
-  fname = "MRN_#{p[:mrn]}.html"
+  fname = "MRN_#{patient_info[:mrn]}.html"
   puts "Writing #{fname}"
   File.open(fname, 'w') do |f|
 
