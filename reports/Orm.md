@@ -1,0 +1,124 @@
+# Object Relational Model
+
+## Abstract
+
+The SQLite3 database is accessed with Orm class. The file is in lib/orm/orm.rb.
+The constructor takes 2 forms. In the first Form, it takes the 
+path to SQLite3 database file andthe class of the model for the table you want to query.
+This form will return an array of rows where are
+instances of the model class. See the Model subject below.
+
+
+Thesecond form of the constructor takes the same path to the database file as the first form. However,
+the second parameter should be the name of the table you want to wquery as string.
+This form will return an array of rows where each element
+is a hash of ech column. The key is the name of the column and the value is the contents
+of that column.
+
+
+## Constructors
+
+### First Form: Model class
+
+```
+$ irb -r ../lib/support -r ../models/patient_info.rb  -r ../lib/orm
+>> orm = Orm.new './patient_info.sqlite3', PatientInfo
+=> #<Orm:0x007fb50a023688 @dbpath="./patient_info.sqlite3", @model=PatientInfo>
+
+```
+
+The model class is in models/patient_infoo.rb. The database file is "./patient_info.sqlite3".
+
+### Second Form: Table name as string
+
+```
+
+$ irb -r ../lib/support   -r ../lib/orm
+>> orm = Orm.new './patient_info.sqlite3', 'patient_info'
+=> #<Orm:0x007f5d3e1d24d0 @dbpath="./patient_info.sqlite3", @model="patient_info
+
+```
+
+Here we instantiate the Orm class with a string for table name: 'patient_info'
+
+## Models
+
+Models are simple Ruby classes with attributes matching the fields in database  table.
+Each attribute must at least attr_reader method.
+The class must also include the module Fieldable.
+This allows forautomatic generation of field lists for database queries.
+The constructor must take an array. This allows
+the select method of Orm class to map the returned
+rows from the query into instances of the model class.
+Within the constructor, each element of the array of columns
+must be assigned to individual named attributes.
+et's look at simple example:
+
+
+```
+class PatientInfo
+  include Fieldable
+
+  def initialize arr
+    @patient_name = arr[0]
+  @date_of_birth = arr[1]
+    @mrn = arr[2]
+    @gender = arr[3]
+    @referring_physician = arr[4]
+
+  # ... more attributes
+  end
+  
+  attr_reader :patient_name
+  attr_reader :date_of_birth
+  attr_reader :mrn
+    attr_reader :gender
+    attr_reader :referring_physician
+  # ... more attr_reader s
+end
+
+```
+
+## Selecting
+
+```
+$ irb -r ../lib/support -r ../models/patient_info.rb  -r ../lib/orm
+>> orm = Orm.new './patient_info.sqlite3', PatientInfo
+=> #<Orm:0x007f1f87d05fb8 @dbpath="./patient_info.sqlite3", @model=PatientInfo>
+>> orm.select_fields.each do |patient_info|
+?> puts patient_info.mrn
+>> end
+123456
+121212
+987654
+
+```
+
+We get enumerable array from orm.select_fields. Each element is an instance of PatientInfo.
+In the loop it is bound to the patient_info variable.
+Then we print the member attribute: .mrn.
+
+
+Let's look at an example using the Hash form:
+
+```
+$ irb -r ../lib/support -r ../lib/orm
+>> orm = Orm.new './patient_info.sqlite3', 'patient_info'
+=> #<Orm:0x007fc289feea68 @dbpath="./patient_info.sqlite3", @model="patient_info">
+>> orm.select('patient_name, date_of_birth', where: "mrn = '123456'").each do |row|
+?> puts "Name: #{row[:patient_name]} | DOB: #{row[:date_of_birth]}"
+>> end
+Name: Foo Bar | DOB: 1987-03-24
+
+```
+
+Here we use the table name form  of the constructor.
+Using the normal form of the select method,
+we pass a list of field names as string.
+We also pass an optional hash containing a number of clauses, such as where and limit
+
+
+Each row from the query is a Ruby Hash.
+We can index each column with a symbol of the field name. ':date_of_birth'
+
+
