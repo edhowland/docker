@@ -78,6 +78,7 @@ code './redcarpet.rb template.md > template.html'
   para <<-EOP
 Next we create all the MRN_99999.html files with 'template.rb'.
 This file uses the sqlite3 gem and the code in lib/orm and models/patient_info.rb'
+(See the file: Object Relation Model - Orm.md. Which discusseshow the Ruby code works.)
 It runs a query: SELECT patient_name, date_of_birth, mrn, ... FROM patient_info'
 That returns an array of PatientInfo objects.
 Next, for each element in this array, we open a file named:

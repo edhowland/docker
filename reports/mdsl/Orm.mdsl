@@ -1,0 +1,38 @@
+# Orm.mdsl - Source for Orm.md
+
+h(1, 'Object Relational Model') do |l|
+
+  h l, 'Abstract'
+
+  para <<-EOP
+The SQLite3 database is accessed with Orm class. The file is in lib/orm/orm.rb.
+The constructor takes 2 forms. In the first Form, it takes the 
+path to SQLite3 database file andthe class of the model for the table you want to query.
+This form will return an array of rows where are
+instances of the model class. See the Model subject below.
+EOP
+
+para <<-EOP
+Thesecond form of the constructor takes the same path to the database file as the first form. However,
+the second parameter should be the name of the table you want to wquery as string.
+This form will return an array of rows where each element
+is a hash of ech column. The key is the name of the column and the value is the contents
+of that column.
+EOP
+
+  h(l, 'Constructors') do |l2|
+    h l2, 'First Form: Model class'
+  code <<-EOC
+$ irb -r ../lib/support -r ../models/patient_info.rb  -r ../lib/orm
+>> orm = Orm.new './patient_info.sqlite3', PatientInfo
+=> #<Orm:0x007fb50a023688 @dbpath="./patient_info.sqlite3", @model=PatientInfo>
+EOC
+
+  para 'The model class is in models/patient_infoo.rb. The database file is "./patient_info.sqlite3".'
+
+
+    h l2, 'Second Form: Table name as string'
+  end # of h l2
+
+
+end # of h1
