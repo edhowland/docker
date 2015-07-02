@@ -97,4 +97,12 @@ $ irb -r ../lib/support -r ../models/patient_info.rb  -r ../lib/orm
 987654
 EOC
 
+  para <<-EOP
+We get enumerable array from orm.select_fields. Each element is an instance of PatientInfo.
+In the loop it is bound to the patient_info variable.
+Then we print the member attribute: .mrn.
+EOP
+
+  para 'Let\'s look at an example using the Hash form:'
+
 end # of h1
