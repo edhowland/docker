@@ -27,7 +27,7 @@ class Orm
   end
 
   def key_string_to_sym hash
-    hash
+    hash.select {|e| e[0].instance_of? String }.reduce({}) {|i,j|i[j[0].to_sym] = j[1];   i}
   end
 
 

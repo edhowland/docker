@@ -59,7 +59,7 @@ describe 'make_query' do
 
   describe 'key_string_sym' do
     let(:orm) { Orm.new '', 'patient_info' }
-    subject { orm.key_string_to_sym({'string' => 'value'}) }
+    subject { orm.key_string_to_sym({'string' => 'value', 0 => 'value'}) }
 
     specify { subject.must_equal({:string => 'value'}) }
   end
