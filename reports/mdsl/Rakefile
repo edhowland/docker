@@ -12,6 +12,7 @@ task :md => mdsl_files.ext('.md')
 
 rule '.md' => '.mdsl' do |t|
   mdgen t.source, t.name
+  cp t.name, '..'
 end
 
 

@@ -1,11 +1,3 @@
-#!/usr/bin/env ruby
-#Readme.mdsl - source for Readme.md
-
-require './helper'
-require 'mdgen'
-
-
-output = markdown do
   h 1, 'Report Pipeline' do |l|
 
   h l, 'Abstract'
@@ -112,6 +104,3 @@ header.html contains the header file that will be inserted at the top of every p
 EOP
     end # of h2 wkhtmltopdf
   end # of h1
-end # of markdown
-
-File.write 'Readme.md', output
