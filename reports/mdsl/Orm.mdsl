@@ -69,6 +69,16 @@ class PatientInfo
     @gender = arr[3]
     @referring_physician = arr[4]
 
+  # ... more attributes
+  end
+  
+  attr_reader :patient_name
+  attr_reader :date_of_birth
+  attr_reader :mrn
+    attr_reader :gender
+    attr_reader :referring_physician
+  # ... more attr_reader s
+end
 EOC
 
   end # of h 2
