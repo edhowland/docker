@@ -1,9 +1,17 @@
-# Rakefile - rakefile for .mdsl -> .md
+# Rakefile for MDSL to MD files
 
-task :default => ['Readme.md'] do
-  cp 'Readme.md', '..'
+# execute the mdgen Ruby script from the sibling pdf_pipeline project
+def mdgen source, dest
+  sh "../../../pdf_pipeline/bin/mdgen #{source} > #{dest}"
 end
 
-file 'Readme.md' => 'Readme.mdsl' do
-  sh './Readme.mdsl'
+mdsl_files = FileList['*.mdsl']
+
+task :default => [:md]
+task :md => mdsl_files.ext('.md')
+
+rule '.md' => '.mdsl' do |t|
+  mdgen t.source, t.name
 end
+
+

@@ -1,0 +1,27 @@
+# Rakefile - rakefile for .mdsl -> .md
+
+mdsl_files = FileList['*.mdsl']
+
+task :default => ['Readme.md', 'Orm.md'] do
+
+task :md => mdsl_files.ext('.md')
+
+rule '.md' => '.mdsl' do |t|
+  sh "echo mdgen #{t.source} > #{t.name}"
+end
+
+
+
+
+
+  cp 'Readme.md', '..'
+  cp 'Orm.md', '..'
+end
+
+file 'Readme.md' => 'Readme.mdsl' do
+  sh './Readme.mdsl'
+end
+
+file 'Orm.md' => 'Orm.mdsl' do
+  sh '../../../pdf_pipeline/bin/mdgen Orm.mdsl > Orm.md'
+end
